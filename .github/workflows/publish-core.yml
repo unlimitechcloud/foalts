@@ -37,5 +37,3 @@ jobs:
       - name: Publish @foal/core to GitHub Packages
         run: npm publish
         working-directory: packages/core
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
