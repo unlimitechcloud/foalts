@@ -1,0 +1,39 @@
+name: Publish @foal/core to GitHub Packages
+
+on:
+  push:
+    tags:
+      - '*.UC'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+      
+      - name: Setup Node.js 24.x
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24.x'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+      
+      - name: Install project and package dependencies
+        run: npm ci
+      
+      - name: Build @foal/core package with Lerna
+        run: npx lerna run build --scope=@foal/core
+      
+      - name: Configure npm registry for GitHub Packages
+        run: |
+          echo "@foal:registry=https://npm.pkg.github.com" > packages/core/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> packages/core/.npmrc
+      
+      - name: Publish @foal/core to GitHub Packages
+        run: npm publish
+        working-directory: packages/core
