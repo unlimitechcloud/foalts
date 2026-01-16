@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [22]
+        node-version: ${{ (github.ref == 'refs/heads/master-uc' || github.base_ref == 'master-uc') && fromJSON('[22]') || fromJSON('[22, 24]') }}
 
     env:
       SETTINGS_AWS_ACCESS_KEY_ID: ${{ secrets.SETTINGS_AWS_ACCESS_KEY_ID }}
