@@ -6,7 +6,7 @@ import { join } from 'path';
 // 3p
 import {
   Config, ConfigNotFoundError, Context, createApp, createService, File, FileList, getApiRequestBody, HttpResponseOK, IApiRequestBody, IAppController, Post, renderError
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 import * as request from 'supertest';
 
 // FoalTS

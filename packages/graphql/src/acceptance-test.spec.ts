@@ -20,7 +20,7 @@ import { existsSync, mkdirSync, rmdirSync, unlinkSync, writeFileSync } from 'fs'
 import { get, Server } from 'http';
 
 // 3p
-import { Config, controller, createApp, dependency } from '@foal/core';
+import { Config, controller, createApp, dependency } from '@unlimitechcloud/core';
 import { buildSchema } from 'graphql';
 import { request } from 'graphql-request';
 import { buildSchema as buildTypeGraphQLSchema, Field, ObjectType, Query, Resolver } from 'type-graphql';

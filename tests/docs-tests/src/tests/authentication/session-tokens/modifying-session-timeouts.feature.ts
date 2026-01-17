@@ -14,7 +14,7 @@ import {
   ServiceManager,
   Store,
   UseSessions
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 import { DatabaseSession } from '@foal/typeorm';
 import { createAndInitializeDataSource, getTypeORMStorePath } from '../../../common';
 

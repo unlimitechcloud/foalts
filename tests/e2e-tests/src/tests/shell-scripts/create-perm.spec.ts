@@ -5,7 +5,7 @@ import Ajv from 'ajv';
 import { Permission } from '@foal/typeorm';
 import { main as createPerm, schema } from './create-perm';
 import { createAndInitializeDataSource } from '../../common';
-import { Logger, ServiceManager } from '@foal/core';
+import { Logger, ServiceManager } from '@unlimitechcloud/core';
 
 describe('[Shell scripts] create-perm', () => {
 

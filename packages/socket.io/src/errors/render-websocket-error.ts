@@ -2,7 +2,7 @@
 import { basename } from 'path';
 
 // 3p
-import { Config } from '@foal/core';
+import { Config } from '@unlimitechcloud/core';
 
 // FoalTS
 import { WebsocketContext, WebsocketErrorResponse } from '../architecture';

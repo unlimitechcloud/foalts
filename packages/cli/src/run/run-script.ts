@@ -5,7 +5,7 @@ import { randomUUID } from 'crypto';
 // 3p
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
-import type { Logger, ServiceManager } from '@foal/core';
+import type { Logger, ServiceManager } from '@unlimitechcloud/core';
 
 // FoalTS
 import { getCommandLineArguments } from './get-command-line-arguments.util';

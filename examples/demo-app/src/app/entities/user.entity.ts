@@ -1,6 +1,6 @@
 import { Column, Entity } from 'typeorm';
 
-import { hashPassword } from '@foal/core';
+import { hashPassword } from '@unlimitechcloud/core';
 import { UserWithPermissions } from '@foal/typeorm';
 
 @Entity()

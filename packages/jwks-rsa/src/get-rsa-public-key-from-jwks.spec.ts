@@ -3,7 +3,7 @@ import { rejects, strictEqual } from 'assert';
 import { Server } from 'http';
 
 // 3p
-import { createApp, Get, HttpResponseOK } from '@foal/core';
+import { createApp, Get, HttpResponseOK } from '@unlimitechcloud/core';
 import { isInvalidTokenError } from '@foal/jwt';
 
 // FoalTS

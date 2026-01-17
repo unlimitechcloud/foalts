@@ -3,7 +3,7 @@ import * as request from 'supertest';
 import { DataSource } from 'typeorm';
 
 // FoalTS
-import { Config, Context, createApp, createSession, dependency, Get, Hook, HttpResponseOK, Store, UseSessions } from '@foal/core';
+import { Config, Context, createApp, createSession, dependency, Get, Hook, HttpResponseOK, Store, UseSessions } from '@unlimitechcloud/core';
 import { DatabaseSession } from '@foal/typeorm';
 import { createAndInitializeDataSource, getTypeORMStorePath } from '../../common';
 

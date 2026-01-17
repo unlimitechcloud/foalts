@@ -16,7 +16,7 @@ import {
   isHttpResponseOK,
   isHttpResponseRedirect,
   Post
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 
 // FoalTS
 import {

@@ -2,7 +2,7 @@
 import { DataSource } from 'typeorm';
 
 // FoalTS
-import { Class } from '@foal/core';
+import { Class } from '@unlimitechcloud/core';
 
 export async function createAndInitializeDataSource(
   entities: Class[],

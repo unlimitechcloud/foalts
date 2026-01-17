@@ -10,7 +10,7 @@ import {
   Config, Context, controller, createApp, createSession,
   dependency, Get, Hook, HttpResponseForbidden, HttpResponseOK,
   HttpResponseUnauthorized, IAppController, Post, Store, UseSessions
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 import { DatabaseSession } from '@foal/typeorm';
 import { createAndInitializeDataSource, getTypeORMStorePath } from '../../../common';
 

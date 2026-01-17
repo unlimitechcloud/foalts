@@ -2,7 +2,7 @@
 import * as request from 'supertest';
 
 // FoalTS
-import { createApp, Get, HttpResponseOK, MergeHooks,  ValidateCookie, ValidateHeader} from '@foal/core';
+import { createApp, Get, HttpResponseOK, MergeHooks,  ValidateCookie, ValidateHeader} from '@unlimitechcloud/core';
 
 describe('Feature: Grouping several hooks into one.', () => {
 

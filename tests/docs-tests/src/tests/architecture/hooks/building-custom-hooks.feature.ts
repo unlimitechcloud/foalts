@@ -11,7 +11,7 @@ import {
   HttpResponseBadRequest,
   HttpResponseOK,
   Post,
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 
 describe('Feature: Building custom hooks', () => {
 

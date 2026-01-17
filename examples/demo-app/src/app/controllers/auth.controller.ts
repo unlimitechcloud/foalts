@@ -6,7 +6,7 @@ import {
   HttpResponse,
   HttpResponseRedirect,
   UseSessions,
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 import { FacebookProvider, GithubProvider, GoogleProvider, LinkedInProvider, TwitterProvider } from '@foal/social';
 import { TypeORMStore } from '@foal/typeorm';
 

@@ -15,7 +15,7 @@ import {
   HttpResponseRedirect,
   Store,
   UseSessions,
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 import { GoogleProvider } from '@foal/social';
 import { createAndInitializeDataSource, getTypeORMStorePath } from '../../../common';
 import { DatabaseSession } from '@foal/typeorm';

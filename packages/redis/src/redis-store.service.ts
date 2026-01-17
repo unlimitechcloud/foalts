@@ -1,4 +1,4 @@
-import { Config, SessionAlreadyExists, SessionState, SessionStore } from '@foal/core';
+import { Config, SessionAlreadyExists, SessionState, SessionStore } from '@unlimitechcloud/core';
 import { createClient } from 'redis';
 
 /**

@@ -1,5 +1,5 @@
 // FoalTS
-import { convertBase64urlToBase64 } from '@foal/core';
+import { convertBase64urlToBase64 } from '@unlimitechcloud/core';
 import { AbstractProvider, SocialTokens } from './abstract-provider.service';
 
 export interface GoogleAuthParams {

@@ -7,7 +7,7 @@
 import 'source-map-support/register';
 
 // 3p
-import { Config, createApp, Logger, ServiceManager } from '@foal/core';
+import { Config, createApp, Logger, ServiceManager } from '@unlimitechcloud/core';
 
 // App
 import { AppController } from './app/app.controller';

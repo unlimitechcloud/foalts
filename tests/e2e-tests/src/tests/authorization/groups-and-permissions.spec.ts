@@ -11,7 +11,7 @@ import {
   HttpResponseNoContent,
   PermissionRequired,
   UseSessions,
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 import {
   DatabaseSession,
   Group,

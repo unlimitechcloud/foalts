@@ -3,7 +3,7 @@ import {
   ApiUseTag, Context, Delete, Get, HttpResponseCreated,
   HttpResponseNoContent, HttpResponseNotFound, HttpResponseOK, Patch, Post,
   Put, ValidateBody, ValidatePathParam, ValidateQueryParam
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 
 import { TestFooBar, User } from '../entities';
 

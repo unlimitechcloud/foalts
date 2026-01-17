@@ -1,4 +1,4 @@
-import { Context, Get, HttpResponseOK } from '@foal/core';
+import { Context, Get, HttpResponseOK } from '@unlimitechcloud/core';
 
 export class /* upperFirstCamelName */Controller {
 

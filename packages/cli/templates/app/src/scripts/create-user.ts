@@ -1,5 +1,5 @@
 // 3p
-import { Logger, ServiceManager } from '@foal/core';
+import { Logger, ServiceManager } from '@unlimitechcloud/core';
 
 // App
 import { User } from '../app/entities';

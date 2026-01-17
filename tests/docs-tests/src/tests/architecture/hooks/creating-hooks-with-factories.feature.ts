@@ -2,7 +2,7 @@
 import * as request from 'supertest';
 
 // FoalTS
-import { createApp, Get, Hook, HttpResponseOK } from '@foal/core';
+import { createApp, Get, Hook, HttpResponseOK } from '@unlimitechcloud/core';
 
 describe('Feature: Creating hooks with factories', () => {
 

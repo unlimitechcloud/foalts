@@ -18,7 +18,7 @@ import {
   Post,
   ValidateBody,
   verifyPassword
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 import { getSecretOrPrivateKey, JWTRequired, setAuthCookie } from '@foal/jwt';
 import { createFixtureUser, createAndInitializeDataSource, credentialsSchema, readCookie, User } from '../../../common';
 

@@ -3,7 +3,7 @@ import { rejects, strictEqual } from 'assert';
 import { Readable } from 'stream';
 
 // 3p
-import { Config, ConfigNotFoundError, ConfigTypeError, createService, streamToBuffer } from '@foal/core';
+import { Config, ConfigNotFoundError, ConfigTypeError, createService, streamToBuffer } from '@unlimitechcloud/core';
 import { FileDoesNotExist } from '@foal/storage';
 import { S3 } from '@aws-sdk/client-s3';
 

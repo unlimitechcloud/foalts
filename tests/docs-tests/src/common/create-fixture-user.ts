@@ -1,4 +1,4 @@
-import { hashPassword } from '@foal/core';
+import { hashPassword } from '@unlimitechcloud/core';
 import { User } from './user.entity';
 
 export async function createFixtureUser(n: number): Promise<User> {

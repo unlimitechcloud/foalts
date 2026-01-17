@@ -9,7 +9,7 @@ import { sign } from 'jsonwebtoken';
 import * as superagent from 'superagent';
 
 // FoalTS
-import { createApp, Get, HttpResponseOK } from '@foal/core';
+import { createApp, Get, HttpResponseOK } from '@unlimitechcloud/core';
 import { getRSAPublicKeyFromJWKS } from '@foal/jwks-rsa';
 import { JWTRequired } from '@foal/jwt';
 

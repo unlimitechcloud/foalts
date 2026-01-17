@@ -1,4 +1,4 @@
-import { Config, Context } from '@foal/core';
+import { Config, Context } from '@unlimitechcloud/core';
 
 import { JWT_DEFAULT_COOKIE_NAME } from './constants';
 

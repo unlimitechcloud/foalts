@@ -2,7 +2,7 @@
 import * as request from 'supertest';
 
 // FoalTS
-import { createApp, Get, HttpResponseOK, Post } from '@foal/core';
+import { createApp, Get, HttpResponseOK, Post } from '@unlimitechcloud/core';
 
 describe('Feature: Inheriting controllers', () => {
 

@@ -9,7 +9,7 @@ import {
   createSession,
   SessionAlreadyExists,
   SessionState
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 import { MongoClient, MongoNotConnectedError } from 'mongodb';
 
 // FoalTS

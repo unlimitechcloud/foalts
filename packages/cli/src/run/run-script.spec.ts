@@ -7,7 +7,7 @@ import { mock, Mock } from 'node:test';
 import { existsSync, readFileSync, unlinkSync, writeFileSync } from 'fs';
 import { mkdirIfDoesNotExist, rmDirAndFilesIfExist } from '../generate/utils';
 import { execScript } from './run-script';
-import { Logger, ServiceManager } from '@foal/core';
+import { Logger, ServiceManager } from '@unlimitechcloud/core';
 
 function rmfileIfExists(path: string) {
   if (existsSync(path)) {
@@ -194,7 +194,7 @@ describe('execScript', () => {
   it('should call the "main" function of build/scripts/my-script.js with a ServiceManager.', async () => {
     mkdirIfDoesNotExist('build/scripts');
     const scriptContent = `const { writeFileSync } = require('fs');
-    const { ServiceManager } = require('@foal/core');
+    const { ServiceManager } = require('@unlimitechcloud/core');
     module.exports.main = function main(args, services) {
       const isServiceManager = services instanceof ServiceManager;
       writeFileSync('my-script-temp', JSON.stringify({
@@ -226,7 +226,7 @@ describe('execScript', () => {
   it('should call the "main" function of build/scripts/my-script.js with a logger.', async () => {
     mkdirIfDoesNotExist('build/scripts');
     const scriptContent = `const { writeFileSync } = require('fs');
-    const { Logger } = require('@foal/core');
+    const { Logger } = require('@unlimitechcloud/core');
     module.exports.main = function main(args, services, logger) {
       const isLogger = logger instanceof Logger;
       writeFileSync('my-script-temp', JSON.stringify({

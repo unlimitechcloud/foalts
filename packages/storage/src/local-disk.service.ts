@@ -7,7 +7,7 @@ import { promisify } from 'util';
 import { existsSync } from 'node:fs';
 
 // 3p
-import { Config, generateToken } from '@foal/core';
+import { Config, generateToken } from '@unlimitechcloud/core';
 
 // FoalTS
 import { Disk, FileDoesNotExist } from './disk.service';

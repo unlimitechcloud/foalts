@@ -7,7 +7,7 @@ import { join } from 'path';
 import * as request from 'supertest';
 
 // FoalTS
-import { Context, Post, File, HttpResponseOK, createApp } from '@foal/core';
+import { Context, Post, File, HttpResponseOK, createApp } from '@unlimitechcloud/core';
 import { ParseAndValidateFiles } from '@foal/storage';
 
 describe('Feature: Using buffers in file uploads', () => {

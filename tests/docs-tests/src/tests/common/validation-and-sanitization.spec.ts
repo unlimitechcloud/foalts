@@ -16,7 +16,7 @@ import {
   ValidateHeader,
   ValidatePathParam,
   ValidateQueryParam
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 import { ValidateBody as ValidateBodyFromClass} from '@foal/typestack';
 
 describe('[Docs] Input Validation & Sanitization', () => {

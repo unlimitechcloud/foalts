@@ -5,7 +5,7 @@ import { DataSource } from 'typeorm';
 // FoalTS
 import {
   Config, controller, createApp, Get, HttpResponseOK, IAppController, UseSessions
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 import { DatabaseSession } from '@foal/typeorm';
 import { createAndInitializeDataSource, getTypeORMStorePath } from '../../../common';
 

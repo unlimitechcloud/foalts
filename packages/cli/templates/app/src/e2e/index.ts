@@ -1,5 +1,5 @@
 // 3p
-import { createApp } from '@foal/core';
+import { createApp } from '@unlimitechcloud/core';
 import * as request from 'supertest';
 import { DataSource } from 'typeorm';
 

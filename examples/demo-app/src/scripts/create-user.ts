@@ -1,5 +1,5 @@
 // App
-import { Logger, ServiceManager } from '@foal/core';
+import { Logger, ServiceManager } from '@unlimitechcloud/core';
 import { Permission, User } from '../app/entities';
 import { dataSource  } from '../db';
 

@@ -1,5 +1,5 @@
 // 3p
-import { IUserWithPermissions } from '@foal/core';
+import { IUserWithPermissions } from '@unlimitechcloud/core';
 import { BaseEntity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 // FoalTS

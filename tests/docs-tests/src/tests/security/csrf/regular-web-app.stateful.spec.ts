@@ -21,7 +21,7 @@ import {
   UseSessions,
   ValidateBody,
   verifyPassword
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 import { DatabaseSession, TypeORMStore } from '@foal/typeorm';
 import { createFixtureUser, createAndInitializeDataSource, credentialsSchema, readCookie, User } from '../../../common';
 

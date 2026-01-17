@@ -18,7 +18,7 @@ import {
   OPENAPI_SERVICE_ID,
   ServiceManager,
   streamToBuffer
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 
 // FoalTS
 import { SwaggerController } from './swagger-controller';

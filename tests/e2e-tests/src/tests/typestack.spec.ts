@@ -3,7 +3,7 @@ import * as request from 'supertest';
 import { BaseEntity, Column, Entity, DataSource, PrimaryGeneratedColumn } from 'typeorm';
 
 // FoalTS
-import { Context, createApp, HttpResponseCreated, Post } from '@foal/core';
+import { Context, createApp, HttpResponseCreated, Post } from '@unlimitechcloud/core';
 import { ValidateBody } from '@foal/typestack';
 import { IsNumber, IsString } from 'class-validator';
 import { createAndInitializeDataSource } from '../common';

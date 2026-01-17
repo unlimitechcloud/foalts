@@ -2,7 +2,7 @@
 import * as request from 'supertest';
 
 // FoalTS
-import { createApp, dependency, Get, HttpResponseOK, ServiceManager } from '@foal/core';
+import { createApp, dependency, Get, HttpResponseOK, ServiceManager } from '@unlimitechcloud/core';
 
 describe('Feature: Accessing the ServiceManager', () => {
 

@@ -17,7 +17,7 @@ import {
   IApiSchema,
   ServiceManager,
   streamToBuffer
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 import * as createBusboy from 'busboy';
 
 // FoalTS

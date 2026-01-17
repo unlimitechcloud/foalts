@@ -8,7 +8,7 @@ import { io } from 'socket.io-client';
 // FoalTS
 import { EventName, ISocketIOController, renderWebsocketError, SocketIOController, WebsocketContext, WebsocketErrorResponse } from '@foal/socket.io';
 import { closeConnections, createConnections } from './common';
-import { Config } from '@foal/core';
+import { Config } from '@unlimitechcloud/core';
 
 describe('Feature: Customizing the error handler', () => {
 

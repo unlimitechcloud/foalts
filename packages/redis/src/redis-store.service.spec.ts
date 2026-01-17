@@ -1,5 +1,5 @@
 // 3p
-import { Config, createService, createSession, SessionAlreadyExists, SessionState } from '@foal/core';
+import { Config, createService, createSession, SessionAlreadyExists, SessionState } from '@unlimitechcloud/core';
 import { createClient } from 'redis';
 
 // FoalTS

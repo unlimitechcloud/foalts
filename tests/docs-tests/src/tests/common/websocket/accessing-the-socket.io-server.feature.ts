@@ -10,7 +10,7 @@ import * as superagent from 'superagent';
 // FoalTS
 import { ISocketIOController, SocketIOController, WsServer } from '@foal/socket.io';
 import { closeConnections, createConnections } from './common';
-import { dependency, Post, HttpResponseOK, controller as httpController } from '@foal/core';
+import { dependency, Post, HttpResponseOK, controller as httpController } from '@unlimitechcloud/core';
 
 describe('Feature: Accessing the socket.io server', () => {
 

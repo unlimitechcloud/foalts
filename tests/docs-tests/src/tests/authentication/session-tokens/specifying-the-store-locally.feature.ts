@@ -19,7 +19,7 @@ import {
   ServiceManager,
   Session,
   UseSessions
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 import { RedisStore } from '@foal/redis';
 
 describe('Feature: Specifying the store locally', () => {

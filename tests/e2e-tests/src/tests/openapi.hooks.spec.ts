@@ -8,7 +8,7 @@ import * as request from 'supertest';
 import { parse } from 'yamljs';
 
 // FoalTS
-import { ApiDefineSchema, ApiInfo, createApp, createOpenApiDocument, Get, Post, ValidateBody } from '@foal/core';
+import { ApiDefineSchema, ApiInfo, createApp, createOpenApiDocument, Get, Post, ValidateBody } from '@unlimitechcloud/core';
 import { JWTOptional, JWTRequired } from '@foal/jwt';
 
 describe('Foal', () => {

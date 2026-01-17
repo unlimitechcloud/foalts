@@ -1,5 +1,5 @@
 // 3p
-import { Class } from '@foal/core';
+import { Class } from '@unlimitechcloud/core';
 
 // FoalTS
 import { WebsocketContext } from './websocket-context';

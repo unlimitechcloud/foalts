@@ -4,7 +4,7 @@ import { pbkdf2, randomBytes } from 'crypto';
 import { promisify } from 'util';
 
 // FoalTS
-import { hashPassword, HttpResponseOK, HttpResponseUnauthorized, isHttpResponseOK, passwordHashNeedsToBeRefreshed, verifyPassword } from '@foal/core';
+import { hashPassword, HttpResponseOK, HttpResponseUnauthorized, isHttpResponseOK, passwordHashNeedsToBeRefreshed, verifyPassword } from '@unlimitechcloud/core';
 import { BaseEntity, Column, DataSource, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { createAndInitializeDataSource } from '../../../common';
 

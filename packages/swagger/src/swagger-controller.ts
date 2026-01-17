@@ -15,7 +15,7 @@ import {
   HttpResponseOK,
   OpenApi,
   OPENAPI_SERVICE_ID,
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 import { getAbsoluteFSPath } from 'swagger-ui-dist';
 
 function isUrlOption(option: SwaggerController['options']): option is { url: string } {

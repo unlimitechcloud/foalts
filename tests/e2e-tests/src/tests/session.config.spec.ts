@@ -10,7 +10,7 @@ import {
   ServiceManager,
   SessionStore,
   UseSessions,
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 
 import { strictEqual } from 'assert';
 import * as request from 'supertest';

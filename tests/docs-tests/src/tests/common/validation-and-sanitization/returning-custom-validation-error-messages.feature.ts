@@ -3,7 +3,7 @@ import ajvErrors from 'ajv-errors';
 import * as request from 'supertest';
 
 // FoalTS
-import { Config, Context, createApp, getAjvInstance, HttpResponseOK, Post, ValidateBody } from '@foal/core';
+import { Config, Context, createApp, getAjvInstance, HttpResponseOK, Post, ValidateBody } from '@unlimitechcloud/core';
 import { _instanceWrapper } from '@foal/core/lib/common/validation/get-ajv-instance';
 
 describe('Feature: Returning custom validation error messages', () => {

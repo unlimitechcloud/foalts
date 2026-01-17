@@ -2,7 +2,7 @@
 import { Readable } from 'stream';
 
 // 3p
-import { Config, generateToken, streamToBuffer } from '@foal/core';
+import { Config, generateToken, streamToBuffer } from '@unlimitechcloud/core';
 import { Disk, FileDoesNotExist } from '@foal/storage';
 import { DeleteObjectCommand, GetObjectCommand, HeadObjectCommand, S3Client, S3ClientConfig, ServerSideEncryption } from '@aws-sdk/client-s3';
 import { Upload } from '@aws-sdk/lib-storage';

@@ -2,7 +2,7 @@
 import { deepStrictEqual, strictEqual } from 'assert';
 
 // 3p
-import { Config } from '@foal/core';
+import { Config } from '@unlimitechcloud/core';
 
 // FoalTS
 import { ISocketIOController, WebsocketContext, WebsocketErrorResponse } from '../architecture'

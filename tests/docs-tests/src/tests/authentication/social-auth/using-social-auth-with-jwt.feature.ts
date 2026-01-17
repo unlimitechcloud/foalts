@@ -14,7 +14,7 @@ import {
   dependency,
   Get,
   HttpResponseRedirect,
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 import { GoogleProvider } from '@foal/social';
 import { getSecretOrPrivateKey, setAuthCookie } from '@foal/jwt';
 import { createAndInitializeDataSource } from '../../../common';

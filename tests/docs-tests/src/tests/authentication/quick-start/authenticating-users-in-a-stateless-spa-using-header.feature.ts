@@ -21,7 +21,7 @@ import {
   Post,
   ValidateBody,
   verifyPassword
-} from '@foal/core';
+} from '@unlimitechcloud/core';
 import { getSecretOrPrivateKey, JWTRequired } from '@foal/jwt';
 import { createAndInitializeDataSource } from '../../../common';
 

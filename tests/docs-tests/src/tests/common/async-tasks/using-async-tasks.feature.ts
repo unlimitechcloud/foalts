@@ -1,5 +1,5 @@
 
-import { AsyncService, dependency } from '@foal/core';
+import { AsyncService, dependency } from '@unlimitechcloud/core';
 
 // This set of tests mainly verifies that the code examples in the documentation compile.
 

@@ -4,7 +4,7 @@ import { readFile, stat } from 'node:fs/promises';
 import { join } from 'path';
 
 // 3p
-import { Context, Get, HttpResponseMovedPermanently, HttpResponseOK, renderToString } from '@foal/core';
+import { Context, Get, HttpResponseMovedPermanently, HttpResponseOK, renderToString } from '@unlimitechcloud/core';
 
 export interface GraphiQLControllerOptions {
   query?: string;

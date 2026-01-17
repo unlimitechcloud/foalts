@@ -6,7 +6,7 @@ import { AddressInfo } from 'net';
 import { io } from 'socket.io-client';
 
 // FoalTS
-import { Class, createApp, ServiceManager } from '@foal/core';
+import { Class, createApp, ServiceManager } from '@unlimitechcloud/core';
 import { SocketIOController } from '@foal/socket.io';
 
 export function createConnections(wsCtrlClass: Class<SocketIOController>, appCtrlClass?: Class): Promise<{ httpServer: ReturnType<typeof createServer>, socket: ReturnType<typeof io>, controller: SocketIOController }> {
