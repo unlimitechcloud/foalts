@@ -1,6 +1,6 @@
 import {
   ApiInfo, ApiServer, Context, dependency, Get, Hook, HttpResponseNotFound, HttpResponseRedirect, Logger, Post, render, UserRequired
-} from '@unlimitechcloud/core';
+} from '@foal/core';
 import { Disk, ParseAndValidateFiles } from '@foal/storage';
 
 import { User } from '../entities';

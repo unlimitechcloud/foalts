@@ -3,7 +3,7 @@ import { URL, URLSearchParams } from 'url';
 import * as crypto from 'crypto';
 
 // 3p
-import { Config, Context, generateToken, HttpResponseRedirect, convertBase64ToBase64url, CookieOptions, HttpResponseOK } from '@unlimitechcloud/core';
+import { Config, Context, generateToken, HttpResponseRedirect, convertBase64ToBase64url, CookieOptions, HttpResponseOK } from '@foal/core';
 
 /**
  * Tokens returned by an OAuth2 authorization server.

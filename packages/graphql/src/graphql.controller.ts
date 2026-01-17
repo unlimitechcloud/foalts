@@ -1,5 +1,5 @@
 // 3p
-import { Context, Get, HttpResponse, HttpResponseBadRequest, HttpResponseOK, Post, } from '@unlimitechcloud/core';
+import { Context, Get, HttpResponse, HttpResponseBadRequest, HttpResponseOK, Post, } from '@foal/core';
 import Ajv from 'ajv';
 import { graphql, GraphQLSchema } from 'graphql';
 

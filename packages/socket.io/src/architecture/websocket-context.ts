@@ -1,6 +1,6 @@
 // 3p
 import { Socket } from 'socket.io';
-import { Session } from '@unlimitechcloud/core';
+import { Session } from '@foal/core';
 
 /**
  * Class instanciated on each WebSocket request. It includes:

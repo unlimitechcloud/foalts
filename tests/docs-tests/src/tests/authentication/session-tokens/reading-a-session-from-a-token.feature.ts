@@ -11,7 +11,7 @@ import {
   createSession,
   readSession,
   Store,
-} from '@unlimitechcloud/core';
+} from '@foal/core';
 import { DatabaseSession } from '@foal/typeorm';
 import { createAndInitializeDataSource, getTypeORMStorePath } from '../../../common';
 

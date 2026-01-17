@@ -1,4 +1,4 @@
-import { Logger, ServiceManager } from '@unlimitechcloud/core';
+import { Logger, ServiceManager } from '@foal/core';
 
 export const schema = {
   additionalProperties: false,

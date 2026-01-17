@@ -5,7 +5,7 @@ import { randomUUID } from 'crypto';
 // 3p
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
-import type { Logger, ServiceManager } from '@unlimitechcloud/core';
+import type { Logger, ServiceManager } from '@foal/core';
 
 // FoalTS
 import { getCommandLineArguments } from './get-command-line-arguments.util';
@@ -13,9 +13,9 @@ import { getCommandLineArguments } from './get-command-line-arguments.util';
 // TODO: test this function
 export async function runScript({ name }: { name: string }, argv: string[]) {
   try {
-    const { Logger, ServiceManager } = require(require.resolve('@unlimitechcloud/core', {
+    const { Logger, ServiceManager } = require(require.resolve('@foal/core', {
       paths: [ process.cwd() ],
-    })) as typeof import('@unlimitechcloud/core');
+    })) as typeof import('@foal/core');
 
     const services = new ServiceManager();
     const logger = services.get(Logger);
@@ -23,7 +23,7 @@ export async function runScript({ name }: { name: string }, argv: string[]) {
     logger.initLogContext(() => execScript({ name }, argv, services, logger).catch(error => console.error(error)))
   } catch (error: any) {
     if (error.code === 'MODULE_NOT_FOUND') {
-      console.error('@unlimitechcloud/core module not found. Are you sure you are in a FoalTS project?');
+      console.error('@foal/core module not found. Are you sure you are in a FoalTS project?');
       return;
     }
 

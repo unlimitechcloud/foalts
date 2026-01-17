@@ -1,4 +1,4 @@
-import { Config } from '@unlimitechcloud/core';
+import { Config } from '@foal/core';
 
 export function getSecretOrPublicKey(): Buffer|string {
   const secret = Config.get('settings.jwt.secret', 'string');

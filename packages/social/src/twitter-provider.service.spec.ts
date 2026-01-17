@@ -3,7 +3,7 @@ import { deepStrictEqual, strictEqual } from 'assert';
 import { Server } from 'http';
 
 // 3p
-import { Config, Context, createApp, createService, Get, HttpResponseBadRequest, HttpResponseOK } from '@unlimitechcloud/core';
+import { Config, Context, createApp, createService, Get, HttpResponseBadRequest, HttpResponseOK } from '@foal/core';
 
 // FoalTS
 import { SocialTokens } from './abstract-provider.service';

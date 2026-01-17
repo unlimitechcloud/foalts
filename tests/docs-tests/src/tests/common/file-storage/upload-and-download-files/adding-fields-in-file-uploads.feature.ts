@@ -7,7 +7,7 @@ import { join } from 'path';
 import * as request from 'supertest';
 
 // FoalTS
-import { Context, createApp, HttpResponseOK, Post } from '@unlimitechcloud/core';
+import { Context, createApp, HttpResponseOK, Post } from '@foal/core';
 import { ParseAndValidateFiles } from '@foal/storage';
 
 describe('Feature: Adding fields in file uploads', () => {

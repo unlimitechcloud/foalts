@@ -5,7 +5,7 @@ import { stat } from 'node:fs/promises';
 import { join } from 'path';
 
 // 3p
-import { Context, getHttpMethod, getPath, isHttpResponseMovedPermanently, isHttpResponseOK, streamToBuffer } from '@unlimitechcloud/core';
+import { Context, getHttpMethod, getPath, isHttpResponseMovedPermanently, isHttpResponseOK, streamToBuffer } from '@foal/core';
 
 // FoalTS
 import { GraphiQLController } from './graphiql.controller';

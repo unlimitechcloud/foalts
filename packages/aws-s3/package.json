@@ -45,7 +45,7 @@
   "dependencies": {
     "@aws-sdk/client-s3": "~3.926.0",
     "@aws-sdk/lib-storage": "~3.926.0",
-    "@unlimitechcloud/core": "^5.1.1002",
+    "@foal/core": "file:../core",
     "@foal/storage": "^5.1.1"
   },
   "devDependencies": {

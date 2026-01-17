@@ -19,7 +19,7 @@ import {
   UseSessions,
   ValidateBody,
   verifyPassword
-} from '@unlimitechcloud/core';
+} from '@foal/core';
 import { MongoDBStore } from '@foal/mongodb';
 import { MongoClient, ObjectId as ObjectId2 } from 'mongodb';
 import * as request from 'supertest';

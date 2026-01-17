@@ -4,7 +4,7 @@ import { createClient } from 'redis';
 import { MongoClient } from 'mongodb';
 
 // FoalTS
-import { createApp, createSession, dependency, Get, HttpResponseInternalServerError, HttpResponseOK, ServiceManager } from '@unlimitechcloud/core';
+import { createApp, createSession, dependency, Get, HttpResponseInternalServerError, HttpResponseOK, ServiceManager } from '@foal/core';
 import { RedisStore } from '@foal/redis';
 import { MongoDBStore } from '@foal/mongodb';
 

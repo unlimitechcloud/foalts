@@ -1,6 +1,6 @@
 import {
   Context, controller, Get, render, UseSessions
-} from '@unlimitechcloud/core';
+} from '@foal/core';
 import { TypeORMStore } from '@foal/typeorm';
 
 import { AuthController, OpenapiController, ProfileController, GraphqlApiController, GraphiQL2Controller } from './controllers';

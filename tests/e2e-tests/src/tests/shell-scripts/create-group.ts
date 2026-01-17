@@ -1,7 +1,7 @@
 // 3p
 import { Group, Permission } from '@foal/typeorm';
 import { createAndInitializeDataSource } from '../../common';
-import { Logger, ServiceManager } from '@unlimitechcloud/core';
+import { Logger, ServiceManager } from '@foal/core';
 
 export const schema = {
   additionalProperties: false,

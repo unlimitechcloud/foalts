@@ -19,7 +19,7 @@ import {
   UseSessions,
   ValidateBody,
   verifyPassword
-} from '@unlimitechcloud/core';
+} from '@foal/core';
 import { RedisStore } from '@foal/redis';
 import { createClient } from 'redis';
 import * as request from 'supertest';

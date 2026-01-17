@@ -1,5 +1,5 @@
 // 3p
-import { SessionAlreadyExists, SessionState, SessionStore } from '@unlimitechcloud/core';
+import { SessionAlreadyExists, SessionState, SessionStore } from '@foal/core';
 import { BaseEntity, Column, Entity, IsNull, LessThan, Not, PrimaryColumn, Repository } from 'typeorm';
 
 @Entity({

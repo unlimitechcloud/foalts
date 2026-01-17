@@ -44,7 +44,7 @@
     "lib/"
   ],
   "dependencies": {
-    "@unlimitechcloud/core": "^5.1.1002",
+    "@foal/core": "file:../core",
     "busboy": "~1.6.0",
     "mime": "~3.0.0"
   },

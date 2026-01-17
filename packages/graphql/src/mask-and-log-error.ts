@@ -1,4 +1,4 @@
-import { Config } from '@unlimitechcloud/core';
+import { Config } from '@foal/core';
 
 /**
  * Log errors and mask them if the configuration key "settings.debug" is not true.

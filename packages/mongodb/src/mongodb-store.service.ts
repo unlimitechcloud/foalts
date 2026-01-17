@@ -1,4 +1,4 @@
-import { Config, SessionAlreadyExists, SessionState, SessionStore } from '@unlimitechcloud/core';
+import { Config, SessionAlreadyExists, SessionState, SessionStore } from '@foal/core';
 import { Collection, MongoClient } from 'mongodb';
 
 interface DatabaseSession {

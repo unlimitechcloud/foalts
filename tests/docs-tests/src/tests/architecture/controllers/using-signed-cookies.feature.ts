@@ -5,7 +5,7 @@ import { strictEqual } from 'assert';
 import * as request from 'supertest';
 
 // FoalTS
-import { Context, HttpResponseOK, Get, createApp, controller, Config } from '@unlimitechcloud/core';
+import { Context, HttpResponseOK, Get, createApp, controller, Config } from '@foal/core';
 import { readCookie, writeCookie } from '../../../common';
 
 describe('Feature: Signing cookies', () => {

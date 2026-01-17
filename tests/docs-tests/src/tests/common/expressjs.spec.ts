@@ -6,7 +6,7 @@ import * as express from 'express';
 import * as request from 'supertest';
 
 // FoalTS
-import { createApp } from '@unlimitechcloud/core';
+import { createApp } from '@foal/core';
 
 it('[Docs] Cookbook > ExpressJS', async () => {
   let called = false;

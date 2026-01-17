@@ -1,6 +1,6 @@
 // 3p
 import { MyController, MyController2, TestFooBarController } from './controllers';
-import { controller } from '@unlimitechcloud/core';
+import { controller } from '@foal/core';
 
 export class AppController {
   subControllers = [

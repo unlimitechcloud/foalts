@@ -14,7 +14,7 @@ import {
   IApiSecurityScheme,
   Logger,
   ServiceManager
-} from '@unlimitechcloud/core';
+} from '@foal/core';
 import { decode, verify } from 'jsonwebtoken';
 
 // FoalTS

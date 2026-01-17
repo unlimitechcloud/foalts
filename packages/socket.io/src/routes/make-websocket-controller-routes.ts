@@ -1,5 +1,5 @@
 // 3p
-import { Class, ServiceManager, getMetadata } from '@unlimitechcloud/core';
+import { Class, ServiceManager, getMetadata } from '@foal/core';
 
 // FoalTS
 import { WebsocketHookFunction } from '../architecture';

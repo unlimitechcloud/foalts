@@ -3,7 +3,7 @@ import { basename, join } from 'path';
 import { Readable } from 'stream';
 
 // 3p
-import { HttpResponse, HttpResponseOK } from '@unlimitechcloud/core';
+import { HttpResponse, HttpResponseOK } from '@foal/core';
 import { getType } from 'mime';
 
 type Type<C extends 'buffer'|'stream'> =

@@ -48,7 +48,7 @@
     "class-validator": "~0.14.1"
   },
   "dependencies": {
-    "@unlimitechcloud/core": "^5.1.1002"
+    "@foal/core": "file:../core"
   },
   "devDependencies": {
     "@types/mocha": "10.0.10",

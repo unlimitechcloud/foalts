@@ -23,7 +23,7 @@ import {
   Patch,
   Post,
   ValidateBody
-} from '@unlimitechcloud/core';
+} from '@foal/core';
 
 describe('FoalTS', () => {
   it('should handle controller inheritance properly ("this" reference, OpenAPI, etc).', async () => {

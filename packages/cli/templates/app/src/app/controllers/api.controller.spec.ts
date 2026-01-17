@@ -2,7 +2,7 @@
 import { strictEqual } from 'assert';
 
 // 3p
-import { Context, createController, getHttpMethod, getPath, isHttpResponseOK } from '@unlimitechcloud/core';
+import { Context, createController, getHttpMethod, getPath, isHttpResponseOK } from '@foal/core';
 
 // App
 import { ApiController } from './api.controller';

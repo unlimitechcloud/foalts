@@ -3,7 +3,7 @@ import { sign } from 'jsonwebtoken';
 import * as request from 'supertest';
 
 // FoalTS
-import { Config, createApp, Get, HttpResponseOK } from '@unlimitechcloud/core';
+import { Config, createApp, Get, HttpResponseOK } from '@foal/core';
 import { getSecretOrPrivateKey, JWTRequired } from '@foal/jwt';
 
 describe('Feature: Using a hook', () => {

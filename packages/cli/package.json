@@ -60,7 +60,7 @@
     "commander": "~14.0.2"
   },
   "devDependencies": {
-    "@unlimitechcloud/core": "^5.1.1002",
+    "@foal/core": "file:../core",
     "@types/mocha": "10.0.10",
     "@types/node": "24.10.0",
     "mocha": "~11.7.5",

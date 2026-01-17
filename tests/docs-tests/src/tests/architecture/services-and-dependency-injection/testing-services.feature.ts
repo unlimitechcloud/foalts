@@ -2,7 +2,7 @@
 import { strictEqual } from 'assert';
 
 // FoalTS
-import { createService, dependency } from '@unlimitechcloud/core';
+import { createService, dependency } from '@foal/core';
 
 describe('Feature: Testing services', () => {
 

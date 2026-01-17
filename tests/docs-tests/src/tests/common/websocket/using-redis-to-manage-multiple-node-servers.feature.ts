@@ -9,7 +9,7 @@ import { createAdapter } from '@socket.io/redis-adapter';
 import { createClient } from 'redis';
 
 // FoalTS
-import { createApp, ServiceManager } from '@unlimitechcloud/core';
+import { createApp, ServiceManager } from '@foal/core';
 import { EventName, SocketIOController, WebsocketContext, WebsocketResponse } from '@foal/socket.io';
 import { closeConnections } from './common';
 

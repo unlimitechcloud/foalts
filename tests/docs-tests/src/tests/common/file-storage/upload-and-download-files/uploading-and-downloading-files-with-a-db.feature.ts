@@ -8,7 +8,7 @@ import * as request from 'supertest';
 import { BaseEntity, Column, DataSource, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 // FoalTS
-import { Context, dependency, Get, HttpResponseNotFound, HttpResponseRedirect, Post, render, Config, createApp, Hook } from '@unlimitechcloud/core';
+import { Context, dependency, Get, HttpResponseNotFound, HttpResponseRedirect, Post, render, Config, createApp, Hook } from '@foal/core';
 import { Disk, ParseAndValidateFiles } from '@foal/storage';
 import { createAndInitializeDataSource } from '../../../../common';
 

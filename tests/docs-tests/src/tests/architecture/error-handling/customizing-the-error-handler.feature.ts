@@ -15,7 +15,7 @@ import {
   HttpResponseInternalServerError,
   IAppController,
   renderError
-} from '@unlimitechcloud/core';
+} from '@foal/core';
 
 describe('Feature: Customizing the error handler', () => {
 

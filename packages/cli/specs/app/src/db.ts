@@ -1,5 +1,5 @@
 
-import { Config } from '@unlimitechcloud/core';
+import { Config } from '@foal/core';
 import { DataSource } from 'typeorm';
 
 export function createDataSource(): DataSource {

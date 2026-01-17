@@ -1,5 +1,5 @@
 // 3p
-import { HookDecorator } from '@unlimitechcloud/core';
+import { HookDecorator } from '@foal/core';
 
 // FoalTS
 import { JWT, JWTOptions, VerifyOptions } from './jwt.hook';

@@ -2,7 +2,7 @@
 import { randomUUID } from 'crypto';
 
 // 3p
-import { Class, Config, dependency, Logger, ServiceManager } from '@unlimitechcloud/core';
+import { Class, Config, dependency, Logger, ServiceManager } from '@foal/core';
 import { Server, ServerOptions } from 'socket.io';
 
 // FoalTS

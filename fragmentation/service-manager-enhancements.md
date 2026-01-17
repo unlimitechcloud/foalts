@@ -316,7 +316,7 @@ After applying to a new branch, verify:
 
 ### ServiceFactory
 ```typescript
-import { ServiceFactory, ServiceManager } from '@unlimitechcloud/core';
+import { ServiceFactory, ServiceManager } from '@foal/core';
 
 // Create a factory
 const dbFactory = new ServiceFactory<DatabaseService>((sm: ServiceManager) => {
@@ -332,7 +332,7 @@ const db = sm.get('database');
 
 ### Service Registration
 ```typescript
-import { ServiceManager } from '@unlimitechcloud/core';
+import { ServiceManager } from '@foal/core';
 
 const sm = new ServiceManager();
 
@@ -349,7 +349,7 @@ sm.register(LogService, { boot: false });
 
 ### LazyService
 ```typescript
-import { LazyService, ServiceManager } from '@unlimitechcloud/core';
+import { LazyService, ServiceManager } from '@foal/core';
 
 class EstimateController {
   private employeeDao = new LazyService(EmployeeDao);

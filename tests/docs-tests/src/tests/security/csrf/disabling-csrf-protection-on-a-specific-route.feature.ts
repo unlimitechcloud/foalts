@@ -6,7 +6,7 @@ import * as request from 'supertest';
 import { DataSource } from 'typeorm';
 
 // FoalTS
-import { Config, controller, createApp, Get, HttpResponseOK, Post, UseSessions } from '@unlimitechcloud/core';
+import { Config, controller, createApp, Get, HttpResponseOK, Post, UseSessions } from '@foal/core';
 import { DatabaseSession } from '@foal/typeorm';
 import { createAndInitializeDataSource, getTypeORMStorePath, readCookie, writeCookie } from '../../../common';
 

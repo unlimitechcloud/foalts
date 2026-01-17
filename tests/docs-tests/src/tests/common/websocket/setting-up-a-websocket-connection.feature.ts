@@ -6,7 +6,7 @@ import * as http from 'http';
 import { io } from 'socket.io-client';
 
 // FoalTS
-import { createApp, ServiceManager } from '@unlimitechcloud/core';
+import { createApp, ServiceManager } from '@foal/core';
 import { EventName, ValidatePayload, SocketIOController, WebsocketContext, WebsocketResponse } from '@foal/socket.io';
 
 describe('Feature: Setting up a websocket connection', () => {

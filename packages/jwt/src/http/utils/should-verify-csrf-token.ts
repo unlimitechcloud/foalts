@@ -1,4 +1,4 @@
-import { Config, Context } from '@unlimitechcloud/core';
+import { Config, Context } from '@foal/core';
 import { JWTOptions } from '../jwt.hook';
 
 export function shouldVerifyCsrfToken(request: Context['request'], options: JWTOptions): boolean {

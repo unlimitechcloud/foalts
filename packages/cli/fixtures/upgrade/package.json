@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@unlimitechcloud/core": "^5.1.1002",
+    "@foal/core": "file:../../../core",
     "@foal/foobar": "^0.8.0",
     "another-dependency": "^1.0.0"
   },

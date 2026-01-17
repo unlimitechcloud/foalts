@@ -2,7 +2,7 @@
 import * as request from 'supertest';
 
 // FoalTS
-import { controller, createApp, dependency, Get, HttpResponseOK, IAppController, ServiceManager } from '@unlimitechcloud/core';
+import { controller, createApp, dependency, Get, HttpResponseOK, IAppController, ServiceManager } from '@foal/core';
 import { DataSource, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { createAndInitializeDataSource } from '../../../common';
 

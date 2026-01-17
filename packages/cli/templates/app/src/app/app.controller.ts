@@ -1,4 +1,4 @@
-import { controller, IAppController } from '@unlimitechcloud/core';
+import { controller, IAppController } from '@foal/core';
 
 import { ApiController } from './controllers';
 

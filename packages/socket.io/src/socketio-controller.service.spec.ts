@@ -17,7 +17,7 @@ import {
   IAppController,
   Logger,
   ServiceManager
-} from '@unlimitechcloud/core';
+} from '@foal/core';
 import { createAdapter } from '@socket.io/redis-adapter';
 import { createClient } from 'redis';
 

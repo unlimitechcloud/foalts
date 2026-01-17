@@ -6,7 +6,7 @@ import {
   Context, createController, getHttpMethod, getPath,
   isHttpResponseCreated, isHttpResponseNoContent,
   isHttpResponseNotFound, isHttpResponseOK
-} from '@unlimitechcloud/core';
+} from '@foal/core';
 import { DataSource } from 'typeorm';
 
 // App

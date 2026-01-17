@@ -2,7 +2,7 @@
 import { strictEqual } from 'assert';
 
 // FoalTS
-import { createApp } from '@unlimitechcloud/core';
+import { createApp } from '@foal/core';
 
 describe('Feature: Making initialization faster', () => {
 

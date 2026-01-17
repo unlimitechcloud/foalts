@@ -1,5 +1,5 @@
 // 3p
-import { Config } from '@unlimitechcloud/core';
+import { Config } from '@foal/core';
 
 // FoalTS
 import { ISocketIOController, WebsocketContext, WebsocketErrorResponse, WebsocketResponse } from '../architecture';

@@ -5,7 +5,7 @@ import { notStrictEqual, strictEqual } from 'assert';
 import { DataSource } from 'typeorm';
 
 // FoalTS
-import { Config, createSession, readSession, ServiceManager, Store } from '@unlimitechcloud/core';
+import { Config, createSession, readSession, ServiceManager, Store } from '@foal/core';
 import { DatabaseSession } from '@foal/typeorm';
 import { createAndInitializeDataSource, getTypeORMStorePath } from '../../../common';
 

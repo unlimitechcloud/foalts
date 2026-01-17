@@ -2,7 +2,7 @@
 import { strictEqual } from 'assert';
 
 // 3p
-import { Context } from '@unlimitechcloud/core';
+import { Context } from '@foal/core';
 
 // FoalTS
 import { getCsrfTokenFromRequest } from './get-csrf-token-from-request';

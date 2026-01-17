@@ -1,4 +1,4 @@
-import { Config, CookieOptions, HttpResponse } from '@unlimitechcloud/core';
+import { Config, CookieOptions, HttpResponse } from '@foal/core';
 import {
   JWT_DEFAULT_COOKIE_NAME,
   JWT_DEFAULT_COOKIE_PATH,

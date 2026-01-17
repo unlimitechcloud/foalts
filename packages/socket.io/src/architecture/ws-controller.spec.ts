@@ -2,7 +2,7 @@
 import { strictEqual } from 'assert';
 
 // FoalTS
-import { getMetadata } from '@unlimitechcloud/core';
+import { getMetadata } from '@foal/core';
 
 // FoalTS
 import { wsController } from './ws-controller';

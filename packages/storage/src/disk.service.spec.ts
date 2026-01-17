@@ -3,7 +3,7 @@ import { doesNotReject, strictEqual } from 'assert';
 import { Readable } from 'stream';
 
 // 3p
-import { HttpResponseOK } from '@unlimitechcloud/core';
+import { HttpResponseOK } from '@foal/core';
 
 // FoalTS
 import { join } from 'path';

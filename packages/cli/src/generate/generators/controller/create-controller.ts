@@ -39,7 +39,7 @@ export function createController({ name, register }: { name: string, register: b
       .addOrExtendNamedImportIn(
         parentControllerPath,
         'controller',
-        '@unlimitechcloud/core',
+        '@foal/core',
         { logs: false }
       )
       .addOrExtendNamedImportIn(

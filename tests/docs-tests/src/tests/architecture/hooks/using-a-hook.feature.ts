@@ -12,7 +12,7 @@ import {
   HttpResponseOK,
   Post,
   ValidateBody,
-} from '@unlimitechcloud/core';
+} from '@foal/core';
 import { getSecretOrPrivateKey, JWTRequired } from '@foal/jwt';
 
 describe('Feature: Using a hook', () => {

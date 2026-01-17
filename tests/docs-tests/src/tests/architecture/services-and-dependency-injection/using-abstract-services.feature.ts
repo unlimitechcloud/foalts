@@ -2,7 +2,7 @@
 import { doesNotReject } from 'assert';
 
 // FoalTS
-import { Config, createApp, dependency } from '@unlimitechcloud/core';
+import { Config, createApp, dependency } from '@foal/core';
 import { existsSync, mkdirSync, rmdirSync, unlinkSync, writeFileSync } from 'fs';
 import { join } from 'path';
 

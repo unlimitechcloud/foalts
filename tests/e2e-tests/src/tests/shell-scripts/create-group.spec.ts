@@ -8,7 +8,7 @@ import Ajv from 'ajv';
 import { Group, Permission } from '@foal/typeorm';
 import { main as createGroup, schema } from './create-group';
 import { createAndInitializeDataSource } from '../../common';
-import { Logger, ServiceManager } from '@unlimitechcloud/core';
+import { Logger, ServiceManager } from '@foal/core';
 
 describe('[Shell scripts] create-perm', () => {
 

@@ -23,7 +23,7 @@ import {
   isHttpResponseUnauthorized,
   Logger,
   ServiceManager
-} from '@unlimitechcloud/core';
+} from '@foal/core';
 import { sign } from 'jsonwebtoken';
 
 // FoalTS

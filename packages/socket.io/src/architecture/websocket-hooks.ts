@@ -1,6 +1,6 @@
 // 3p
 import 'reflect-metadata';
-import { ServiceManager } from '@unlimitechcloud/core';
+import { ServiceManager } from '@foal/core';
 
 // FoalTS
 import { WebsocketErrorResponse, WebsocketResponse } from './websocket-responses';

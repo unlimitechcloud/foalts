@@ -2,7 +2,7 @@
 import { strictEqual } from 'assert';
 
 // 3p
-import { Config, Context, HttpMethod } from '@unlimitechcloud/core';
+import { Config, Context, HttpMethod } from '@foal/core';
 
 // FoalTS
 import { JWTOptions } from '../jwt.hook';

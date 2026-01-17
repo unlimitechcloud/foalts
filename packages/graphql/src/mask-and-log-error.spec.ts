@@ -2,7 +2,7 @@
 import { strictEqual } from 'assert';
 
 // 3p
-import { Config } from '@unlimitechcloud/core';
+import { Config } from '@foal/core';
 
 // FoalTS
 import { maskAndLogError } from './mask-and-log-error';

@@ -12,7 +12,7 @@ import {
   // Hook,
   HttpResponseNotFound,
   HttpResponseOK,
-} from '@unlimitechcloud/core';
+} from '@foal/core';
 import { getSecretOrPrivateKey, JWTRequired } from '@foal/jwt';
 
 describe('Feature: Setting up a simple application', () => {

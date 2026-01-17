@@ -1,5 +1,5 @@
 // 3p
-import { ServiceManager } from '@unlimitechcloud/core';
+import { ServiceManager } from '@foal/core';
 import { TypeORMStore } from '@foal/typeorm';
 
 // App

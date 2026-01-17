@@ -1,5 +1,5 @@
 // 3p
-import { getAjvInstance } from '@unlimitechcloud/core';
+import { getAjvInstance } from '@foal/core';
 
 // FoalTS
 import { WebsocketContext, WebsocketHook, WebsocketHookDecorator, WebsocketErrorResponse } from '../architecture';

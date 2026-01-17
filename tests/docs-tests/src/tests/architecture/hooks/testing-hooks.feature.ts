@@ -11,7 +11,7 @@ import {
   isHttpResponse,
   isHttpResponseBadRequest,
   ServiceManager
-} from '@unlimitechcloud/core';
+} from '@foal/core';
 
 describe('Feature: Testing hooks', () => {
 

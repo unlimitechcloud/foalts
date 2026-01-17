@@ -5,7 +5,7 @@ import { deepStrictEqual } from 'assert';
 import * as request from 'supertest';
 
 // FoalTS
-import { controller, createApp, Dependency, Get, HttpResponseOK, IAppController, ServiceManager } from '@unlimitechcloud/core';
+import { controller, createApp, Dependency, Get, HttpResponseOK, IAppController, ServiceManager } from '@foal/core';
 import { Entity, DataSource, PrimaryGeneratedColumn, Repository } from 'typeorm';
 import { createAndInitializeDataSource } from '../../../common';
 

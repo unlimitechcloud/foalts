@@ -3,7 +3,7 @@ import { FileSystem } from '../../file-system';
 import { installDependencies, logger } from '../../utils';
 
 async function getLatestVersion(): Promise<string> {
-  const response = await fetch('https://registry.npmjs.org/@unlimitechcloud/core/latest');
+  const response = await fetch('https://registry.npmjs.org/@foal/core/latest');
   const { version } = await response.json();
   return version;
 }

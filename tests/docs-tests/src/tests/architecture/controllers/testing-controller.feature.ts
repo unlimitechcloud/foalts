@@ -2,7 +2,7 @@
 import { strictEqual } from 'assert';
 
 // FoalTS
-import { Context, createController, Get, HttpResponseOK, isHttpResponseOK } from '@unlimitechcloud/core';
+import { Context, createController, Get, HttpResponseOK, isHttpResponseOK } from '@foal/core';
 import { JWTRequired } from '@foal/jwt';
 
 describe('Feature: Testing controllers', () => {

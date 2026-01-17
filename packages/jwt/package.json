@@ -42,7 +42,7 @@
     "lib/"
   ],
   "dependencies": {
-    "@unlimitechcloud/core": "^5.1.1002",
+    "@foal/core": "file:../core",
     "jsonwebtoken": "~9.0.2"
   },
   "devDependencies": {

@@ -6,7 +6,7 @@ import {
   Context, createController, getHttpMethod, getPath,
   isHttpResponseBadRequest,
   isHttpResponseOK
-} from '@unlimitechcloud/core';
+} from '@foal/core';
 import { buildSchema, GraphQLObjectType, GraphQLSchema, GraphQLString } from 'graphql';
 
 // App

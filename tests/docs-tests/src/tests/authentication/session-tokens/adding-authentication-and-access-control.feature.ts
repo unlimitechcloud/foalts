@@ -21,7 +21,7 @@ import {
   Store,
   UserRequired,
   UseSessions
-} from '@unlimitechcloud/core';
+} from '@foal/core';
 import { DatabaseSession } from '@foal/typeorm';
 import { createAndInitializeDataSource, getTypeORMStorePath, readCookie, writeCookie } from '../../../common';
 

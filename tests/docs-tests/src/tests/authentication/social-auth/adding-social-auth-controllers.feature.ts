@@ -1,5 +1,5 @@
 // FoalTS
-import { Context, dependency, Get } from '@unlimitechcloud/core';
+import { Context, dependency, Get } from '@foal/core';
 import { GoogleProvider } from '@foal/social';
 
 describe('Feature: Adding social auth controllers', () => {

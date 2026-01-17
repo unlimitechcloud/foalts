@@ -5,7 +5,7 @@ import { join } from 'path';
 import { Readable } from 'stream';
 
 // 3p
-import { Config, ConfigNotFoundError, createService, streamToBuffer } from '@unlimitechcloud/core';
+import { Config, ConfigNotFoundError, createService, streamToBuffer } from '@foal/core';
 
 // FoalTS
 import { FileDoesNotExist } from './disk.service';

@@ -7,7 +7,7 @@ import { join } from 'path';
 import * as request from 'supertest';
 
 // FoalTS
-import { Config, Context, createApp, HttpResponseOK, Post } from '@unlimitechcloud/core';
+import { Config, Context, createApp, HttpResponseOK, Post } from '@foal/core';
 import { ParseAndValidateFiles } from '@foal/storage';
 
 describe('Feature: Using streaming in file upload', () => {

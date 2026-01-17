@@ -11,7 +11,7 @@ import {
   Post,
   Put,
   Request,
-} from '@unlimitechcloud/core';
+} from '@foal/core';
 
 describe('Feature: Reading the request information', () => {
 

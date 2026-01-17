@@ -2,7 +2,7 @@
 import 'reflect-metadata';
 
 // FoalTS
-import { Class } from '@unlimitechcloud/core';
+import { Class } from '@foal/core';
 
 /**
  * Defines the prefix of the event names of a controller class. This function is usually called

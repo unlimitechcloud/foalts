@@ -1,4 +1,4 @@
-import { Hook, HookDecorator } from '@unlimitechcloud/core';
+import { Hook, HookDecorator } from '@foal/core';
 
 export function TestFooBar(): HookDecorator {
   return Hook(async (ctx, services) => {

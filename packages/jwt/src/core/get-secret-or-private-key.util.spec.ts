@@ -1,4 +1,4 @@
-import { Config, ConfigTypeError } from '@unlimitechcloud/core';
+import { Config, ConfigTypeError } from '@foal/core';
 import { deepStrictEqual, strictEqual, throws } from 'assert';
 import { getSecretOrPrivateKey } from './get-secret-or-private-key.util';
 

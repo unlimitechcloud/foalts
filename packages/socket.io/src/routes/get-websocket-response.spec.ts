@@ -2,7 +2,7 @@
 import { strictEqual } from 'assert';
 
 // 3p
-import { Config, ServiceManager } from '@unlimitechcloud/core';
+import { Config, ServiceManager } from '@foal/core';
 
 // FoalTS
 import { getWebsocketResponse } from './get-websocket-response';

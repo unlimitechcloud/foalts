@@ -5,7 +5,7 @@ import { strictEqual } from 'assert';
 import * as request from 'supertest';
 
 // FoalTS
-import { createApp, Get, HttpResponseOK } from '@unlimitechcloud/core';
+import { createApp, Get, HttpResponseOK } from '@foal/core';
 
 describe('Feature: Returning a response', () => {
 

@@ -7,7 +7,7 @@ import { join } from 'path';
 import * as request from 'supertest';
 
 // FoalTS
-import { Config, createApp, dependency, Get } from '@unlimitechcloud/core';
+import { Config, createApp, dependency, Get } from '@foal/core';
 import { Disk } from '@foal/storage';
 
 describe('Feature: Downloading files', () => {

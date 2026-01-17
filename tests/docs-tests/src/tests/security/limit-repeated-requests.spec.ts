@@ -1,5 +1,5 @@
 // 3p
-import { Config, createApp, Logger, ServiceManager } from '@unlimitechcloud/core';
+import { Config, createApp, Logger, ServiceManager } from '@foal/core';
 import * as express from 'express';
 import { rateLimit } from 'express-rate-limit';
 

@@ -19,7 +19,7 @@ describe('upgrade', () => {
 
       const actualDependencies = fs.getProjectDependencies();
       const expectedDependencies = [
-        { name: '@unlimitechcloud/core', version: '3.0.0' },
+        { name: '@foal/core', version: '3.0.0' },
         { name: '@foal/foobar', version: '3.0.0' },
         { name: 'another-dependency', version: '^1.0.0' }
       ];
@@ -50,7 +50,7 @@ describe('upgrade', () => {
 
       const actualDependencies = fs.getProjectDependencies();
       const expectedDependencies = [
-        { name: '@unlimitechcloud/core', version: '3.0.0' },
+        { name: '@foal/core', version: '3.0.0' },
         { name: '@foal/foobar', version: '3.0.0' },
         { name: 'another-dependency', version: '^1.0.0' }
       ];

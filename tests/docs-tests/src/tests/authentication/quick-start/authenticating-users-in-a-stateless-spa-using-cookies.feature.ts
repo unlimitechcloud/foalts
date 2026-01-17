@@ -20,7 +20,7 @@ import {
   Post,
   ValidateBody,
   verifyPassword
-} from '@unlimitechcloud/core';
+} from '@foal/core';
 import { getSecretOrPrivateKey, JWTRequired, removeAuthCookie, setAuthCookie } from '@foal/jwt';
 import { createAndInitializeDataSource, readCookie, writeCookie } from '../../../common';
 
