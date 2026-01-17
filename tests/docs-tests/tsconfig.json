@@ -2,6 +2,10 @@
   "compilerOptions": {
     "outDir": "lib/",
     "module": "commonjs",
+    "paths": {
+      "@foal/core": ["../../packages/core/lib"],
+      "@foal/core/*": ["../../packages/core/lib/*"]
+    },
     "target": "es2023",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -9,11 +13,19 @@
     "strictPropertyInitialization": false,
     "sourceMap": true,
     "declaration": true,
+    "paths": {
+      "@foal/core": ["../../packages/core/lib"],
+      "@foal/core/*": ["../../packages/core/lib/*"]
+    },
     "typeRoots": [
       "./typings",
       "../../typings",
       "../../node_modules/@types",
     ],
+    "paths": {
+      "@foal/core": ["../../packages/core/lib"],
+      "@foal/core/*": ["../../packages/core/lib/*"]
+    },
     "lib": [
       "es2023",
       "dom"

@@ -9,11 +9,19 @@
     "strictPropertyInitialization": false,
     "sourceMap": true,
     "declaration": true,
+    "paths": {
+      "@foal/core": ["../core/lib"],
+      "@foal/core/*": ["../core/lib/*"]
+    },
     "typeRoots": [
       "./typings",
       "../../typings",
       "../../node_modules/@types",
     ],
+    "paths": {
+      "@foal/core": ["../core/lib"],
+      "@foal/core/*": ["../core/lib/*"]
+    },
     "lib": [
       "es2023",
       "dom"

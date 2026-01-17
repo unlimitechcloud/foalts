@@ -50,7 +50,7 @@
     "@foal/jwt": "*"
   },
   "devDependencies": {
-    "@foal/core": "npm:@unlimitechcloud/foalts.core@*",
+    "@foal/core": "npm:@unlimitechcloud/foalts.core@5.1.1002",
     "@foal/jwt": "^5.1.1",
     "@types/mocha": "10.0.10",
     "@types/node": "24.10.0",
