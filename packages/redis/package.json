@@ -41,7 +41,7 @@
     "lib/"
   ],
   "dependencies": {
-    "@foal/core": "^5.1.1",
+    "@unlimitechcloud/core": "^5.1.1002",
     "redis": "~4.7.0"
   },
   "devDependencies": {

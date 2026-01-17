@@ -45,7 +45,7 @@
     "lib/"
   ],
   "dependencies": {
-    "@foal/core": "^5.1.1",
+    "@unlimitechcloud/core": "^5.1.1002",
     "mongodb": "~5.9.2"
   },
   "devDependencies": {

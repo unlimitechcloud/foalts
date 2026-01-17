@@ -43,7 +43,7 @@
     "lib/"
   ],
   "dependencies": {
-    "@foal/core": "^5.1.1",
+    "@unlimitechcloud/core": "^5.1.1002",
     "swagger-ui-dist": "~5.30.2"
   },
   "devDependencies": {
