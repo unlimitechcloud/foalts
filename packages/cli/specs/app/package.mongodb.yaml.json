@@ -21,7 +21,7 @@
     "node": ">=22.0.0"
   },
   "dependencies": {
-    "@unlimitechcloud/core": "^5.1.1002",
+    "@foal/core": "file:../../../../packages/core",
     "mongodb": "~5.9.2",
     "source-map-support": "~0.5.21",
     "typeorm": "0.3.27",

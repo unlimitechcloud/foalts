@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@unlimitechcloud/core": "^5.1.1002",
+    "@foal/core": "file:../../../../packages/core",
     "mongodb": "xxxx"
   }
 }
