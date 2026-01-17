@@ -55,7 +55,7 @@
     "typescript": "~5.5.4"
   },
   "dependencies": {
-    "@foal/core": "file:../core",
+    "@foal/core": "npm:@unlimitechcloud/foalts.core@*",
     "reflect-metadata": "~0.2.2",
     "socket.io": "~4.8.1"
   }

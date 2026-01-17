@@ -21,7 +21,7 @@
     "node": ">=22.0.0"
   },
   "dependencies": {
-    "@foal/core": "file:../../../../packages/core",
+    "@foal/core": "npm:@unlimitechcloud/foalts.core@*",
     "mongodb": "~5.9.2",
     "source-map-support": "~0.5.21",
     "typeorm": "0.3.27",

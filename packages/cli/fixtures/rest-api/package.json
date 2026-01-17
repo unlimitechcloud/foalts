@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "@foal/core": "file:../../../core"
+    "@foal/core": "npm:@unlimitechcloud/foalts.core@*"
   }
 }

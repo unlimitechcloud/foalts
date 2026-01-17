@@ -47,7 +47,7 @@
     "lib/"
   ],
   "dependencies": {
-    "@foal/core": "file:../core"
+    "@foal/core": "npm:@unlimitechcloud/foalts.core@*"
   },
   "peerDependencies": {
     "typeorm": "^0.3.24"

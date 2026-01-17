@@ -44,7 +44,7 @@
     "lib/"
   ],
   "dependencies": {
-    "@foal/core": "file:../core",
+    "@foal/core": "npm:@unlimitechcloud/foalts.core@*",
     "busboy": "~1.6.0",
     "mime": "~3.0.0"
   },

@@ -41,7 +41,7 @@
     "lib/"
   ],
   "dependencies": {
-    "@foal/core": "file:../core",
+    "@foal/core": "npm:@unlimitechcloud/foalts.core@*",
     "redis": "~4.7.0"
   },
   "devDependencies": {

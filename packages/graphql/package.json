@@ -40,7 +40,7 @@
     "lib/"
   ],
   "dependencies": {
-    "@foal/core": "file:../core",
+    "@foal/core": "npm:@unlimitechcloud/foalts.core@*",
     "ajv": "~8.17.1"
   },
   "devDependencies": {

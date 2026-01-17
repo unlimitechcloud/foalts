@@ -40,7 +40,7 @@
     "lib/"
   ],
   "dependencies": {
-    "@foal/core": "file:../core"
+    "@foal/core": "npm:@unlimitechcloud/foalts.core@*"
   },
   "devDependencies": {
     "@types/mocha": "10.0.10",

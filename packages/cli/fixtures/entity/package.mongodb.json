@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@foal/core": "file:../../../../packages/core",
+    "@foal/core": "npm:@unlimitechcloud/foalts.core@*",
     "mongodb": "xxx"
   }
 }
