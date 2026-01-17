@@ -30,7 +30,7 @@ jobs:
       - name: Configure npm registry for GitHub Packages
         run: |
           echo "@foal:registry=https://npm.pkg.github.com" > packages/core/.npmrc
-          echo "//npm.pkg.github.com/:_authToken=");${{ secrets.GITHUB_TOKEN }} >> packages/core/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> packages/core/.npmrc
       
       - name: Publish @foal/core to GitHub Packages
         run: npm publish
