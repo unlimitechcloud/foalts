@@ -23,7 +23,7 @@ export class ConcreteDisk {
   }
 }
 
-// Used in @foal/core:
+// Used in @unlimitechcloud/core:
 export class ConcreteSessionStore {
 
 }
