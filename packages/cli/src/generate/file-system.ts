@@ -113,7 +113,7 @@ export class FileSystem {
       );
     }
 
-    if (!pkg.dependencies || !pkg.dependencies['@foal/core']) {
+    if (!pkg.dependencies || !pkg.dependencies['@unlimitechcloud/core']) {
       throw new ClientError(
         'This project is not a FoalTS project. The dependency @foal/core is missing in package.json.'
       );

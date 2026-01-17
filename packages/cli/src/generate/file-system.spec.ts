@@ -92,7 +92,7 @@ describe('FileSystem', () => {
         'test-generators/subdir/package.json',
         JSON.stringify({
           dependencies: {
-            '@foal/core': 'versionNumber'
+            '@unlimitechcloud/core': 'versionNumber'
           }
         }),
         'utf8'
@@ -125,7 +125,7 @@ describe('FileSystem', () => {
       }
     });
 
-    it('should throw a ClienError if the package.json found does not have @foal/core as dependency (no deps).', () => {
+    it('should throw a ClienError if the package.json found does not have @unlimitechcloud/core as dependency (no deps).', () => {
       writeFileSync(
         'test-generators/subdir/package.json',
         JSON.stringify({}),
@@ -142,12 +142,12 @@ describe('FileSystem', () => {
         }
         strictEqual(
           error.message,
-          'This project is not a FoalTS project. The dependency @foal/core is missing in package.json.'
+          'This project is not a FoalTS project. The dependency @unlimitechcloud/core is missing in package.json.'
         );
       }
     });
 
-    it('should throw a ClienError if the package.json found does not have @foal/core as dependency (>=1 dep).', () => {
+    it('should throw a ClienError if the package.json found does not have @unlimitechcloud/core as dependency (>=1 dep).', () => {
       writeFileSync(
         'test-generators/subdir/package.json',
         JSON.stringify({
@@ -166,7 +166,7 @@ describe('FileSystem', () => {
         }
         strictEqual(
           error.message,
-          'This project is not a FoalTS project. The dependency @foal/core is missing in package.json.'
+          'This project is not a FoalTS project. The dependency @unlimitechcloud/core is missing in package.json.'
         );
       }
     });
@@ -855,7 +855,7 @@ describe('FileSystem', () => {
       initialPkg = readFileSync('package.json');
       writeFileSync('package.json', JSON.stringify({
         dependencies: {
-          '@foal/core': 'hello',
+          '@unlimitechcloud/core': 'hello',
           'bar': 'world'
         }
       }), 'utf8');
@@ -892,7 +892,7 @@ describe('FileSystem', () => {
       initialPkg = readFileSync('package.json');
       writeFileSync('package.json', JSON.stringify({
         dependencies: {
-          '@foal/core': '~1.0.1',
+          '@unlimitechcloud/core': '~1.0.1',
           'bar': '~2.2.0'
         }
       }), 'utf8');
@@ -908,7 +908,7 @@ describe('FileSystem', () => {
       deepStrictEqual(
         fs.getProjectDependencies(),
         [
-          { name: '@foal/core', version: '~1.0.1' },
+          { name: '@unlimitechcloud/core', version: '~1.0.1' },
           { name: 'bar', version: '~2.2.0' }
         ]
       );
@@ -931,7 +931,7 @@ describe('FileSystem', () => {
       initialPkg = readFileSync('package.json');
       writeFileSync('package.json', JSON.stringify({
         dependencies: {
-          '@foal/core': '~1.0.1',
+          '@unlimitechcloud/core': '~1.0.1',
           'bar': '~2.2.0'
         }
       }), 'utf8');
@@ -954,20 +954,20 @@ describe('FileSystem', () => {
       const pkg = JSON.parse(fileContent);
 
       deepStrictEqual(pkg.dependencies, {
-        '@foal/core': '~1.0.1',
+        '@unlimitechcloud/core': '~1.0.1',
         'bar': '~2.2.0',
         'foo': '1.0.0'
       });
     });
 
     it('should update the dependency if it already exists.', () => {
-      fs.setOrUpdateProjectDependency('@foal/core', '2.0.0');
+      fs.setOrUpdateProjectDependency('@unlimitechcloud/core', '2.0.0');
 
       const fileContent = readFileSync('package.json', 'utf8');
       const pkg = JSON.parse(fileContent);
 
       deepStrictEqual(pkg.dependencies, {
-        '@foal/core': '2.0.0',
+        '@unlimitechcloud/core': '2.0.0',
         'bar': '~2.2.0'
       });
 
@@ -985,7 +985,7 @@ describe('FileSystem', () => {
       initialPkg = readFileSync('package.json');
       writeFileSync('package.json', JSON.stringify({
         dependencies: {
-          '@foal/core': '~1.0.1',
+          '@unlimitechcloud/core': '~1.0.1',
           'bar': '~2.2.0'
         }
       }), 'utf8');
@@ -1009,7 +1009,7 @@ describe('FileSystem', () => {
         const pkg = JSON.parse(fileContent);
 
         deepStrictEqual(pkg.dependencies, {
-          '@foal/core': '~1.0.1',
+          '@unlimitechcloud/core': '~1.0.1',
           'bar': '~2.2.0',
           'foo': '1.0.0'
         });
@@ -1024,7 +1024,7 @@ describe('FileSystem', () => {
         const pkg = JSON.parse(fileContent);
 
         deepStrictEqual(pkg.dependencies, {
-          '@foal/core': '~1.0.1',
+          '@unlimitechcloud/core': '~1.0.1',
           'bar': '~2.2.0'
         });
       });
@@ -1042,7 +1042,7 @@ describe('FileSystem', () => {
       initialPkg = readFileSync('package.json');
       writeFileSync('package.json', JSON.stringify({
         dependencies: {
-          '@foal/core': '0.0.0',
+          '@unlimitechcloud/core': '0.0.0',
         },
         devDependencies: {
           '@foal/cli': '~1.0.1',
@@ -1084,7 +1084,7 @@ describe('FileSystem', () => {
       initialPkg = readFileSync('package.json');
       writeFileSync('package.json', JSON.stringify({
         dependencies: {
-          '@foal/core': '0.0.1',
+          '@unlimitechcloud/core': '0.0.1',
         },
         devDependencies: {
           '@foal/cli': '~1.0.1',

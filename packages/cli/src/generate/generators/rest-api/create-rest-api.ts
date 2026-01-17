@@ -66,7 +66,7 @@ export function createRestApi({ name, register, auth }: { name: string, register
       .addOrExtendNamedImportIn(
         parentControllerPath,
         'controller',
-        '@foal/core',
+        '@unlimitechcloud/core',
         { logs: false }
       )
       .addOrExtendNamedImportIn(
