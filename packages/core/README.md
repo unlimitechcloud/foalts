@@ -268,49 +268,51 @@ const userService = sm.get(UserService);
 
 ### Debugging with Logging
 
-The `ServiceManager` includes a built-in logging system for debugging service resolution:
+The `ServiceManager` uses FoalTS's built-in `Logger` for debugging service resolution. Logging is disabled by default and only activates when `debug: true` is set.
 
 ```typescript
-import { ServiceManager, ServiceManagerLogger } from '@foal/core';
+import { ServiceManager } from '@foal/core';
 
-// Enable info-level logging
-const sm = new ServiceManager({ logging: true });
+// No logging (default)
+const sm = new ServiceManager();
 
-// Enable detailed debug logging (includes resolution chain)
+// Enable debug logging
 const sm = new ServiceManager({ debug: true });
+```
 
-// Custom logger implementation
-const customLogger: ServiceManagerLogger = {
-  info: (msg) => myLogger.info(msg),
-  debug: (msg) => myLogger.debug(msg),
-  warn: (msg) => myLogger.warn(msg),
-};
+#### Configuration
 
-const sm = new ServiceManager({
-  logging: true,
-  debug: true,
-  logger: customLogger
-});
+The log level is controlled by FoalTS's standard logger configuration:
+
+```yaml
+# config/default.yml
+settings:
+  logger:
+    logLevel: debug  # debug, info, warn, error
+    format: raw      # raw, dev, json, none
 ```
 
 #### Log Levels
 
-| Option | Default | Description |
-|--------|---------|-------------|
-| `logging` | `false` | Info-level logs: registration, creation, boot events |
-| `debug` | `false` | Detailed logs: resolution chain, dependency injection, caching |
+| Logger Level | ServiceManager Output |
+|--------------|----------------------|
+| `debug` | Full resolution chain with indentation |
+| `info` | Service creation, registration, boot events |
+| `warn` | Warnings (e.g., missing metadata) |
+| `error` | Errors only |
+| `none` (format) | No logging |
 
-#### Example Output (debug mode)
+#### Example Output (debug mode with logLevel: debug)
 
 ```
-[ServiceManager] Creating UserService (first access)
-[ServiceManager:DEBUG] Resolving UserService
-[ServiceManager:DEBUG]   Instantiating new UserService()
-[ServiceManager:DEBUG]   Injecting dependencies into UserService
-[ServiceManager:DEBUG]     Resolving DatabaseService (requested by UserService.database)
-[ServiceManager:DEBUG]       Instantiating new DatabaseService()
-[ServiceManager:DEBUG]       DatabaseService ready and cached
-[ServiceManager:DEBUG]   UserService ready and cached
+[INFO] [ServiceManager] Creating UserService (first access)
+[DEBUG] [ServiceManager] Resolving UserService
+[DEBUG] [ServiceManager]   Instantiating new UserService()
+[DEBUG] [ServiceManager]   Injecting dependencies into UserService
+[DEBUG] [ServiceManager]     Resolving DatabaseService (requested by UserService.database)
+[DEBUG] [ServiceManager]       Instantiating new DatabaseService()
+[DEBUG] [ServiceManager]       DatabaseService ready and cached
+[DEBUG] [ServiceManager]   UserService ready and cached
 ```
 
 This helps trace:

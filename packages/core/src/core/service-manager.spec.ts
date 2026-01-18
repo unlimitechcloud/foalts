@@ -1353,148 +1353,202 @@ describe('ServiceManager', () => {
 
   describe('logging', () => {
 
-    it('should not log by default', () => {
+    it('should not log when debug mode is disabled', () => {
       const logs: string[] = [];
       const originalLog = console.log;
       console.log = (msg: string) => logs.push(msg);
 
       try {
-        const sm = new ServiceManager();
+        const sm = new ServiceManager(); // debug: false by default
         class TestService {}
         sm.get(TestService);
 
-        strictEqual(logs.length, 0, 'Should not log anything by default');
+        strictEqual(logs.length, 0, 'Should not log anything when debug is disabled');
       } finally {
         console.log = originalLog;
       }
     });
 
-    it('should log info messages when logging is enabled', () => {
+    it('should not log when logger format is none even with debug enabled', () => {
       const logs: string[] = [];
-      const customLogger = {
-        info: (msg: string) => logs.push(`INFO: ${msg}`),
-        debug: (msg: string) => logs.push(`DEBUG: ${msg}`),
-        warn: (msg: string) => logs.push(`WARN: ${msg}`),
-      };
+      const originalLog = console.log;
+      console.log = (msg: string) => logs.push(msg);
 
-      const sm = new ServiceManager({ logging: true, logger: customLogger });
-      class TestService {}
-      sm.get(TestService);
+      // Set format to none to disable logging
+      Config.set('settings.logger.format', 'none');
 
-      ok(logs.some(l => l.includes('INFO:')), 'Should have info logs');
-      ok(logs.some(l => l.includes('Creating TestService')), 'Should log service creation');
+      try {
+        const sm = new ServiceManager({ debug: true });
+        class TestService {}
+        sm.get(TestService);
+
+        strictEqual(logs.length, 0, 'Should not log anything when format is none');
+      } finally {
+        console.log = originalLog;
+        Config.remove('settings.logger.format');
+      }
     });
 
-    it('should log detailed debug messages when debug mode is enabled', () => {
+    it('should log info messages when debug mode is enabled', () => {
       const logs: string[] = [];
-      const customLogger = {
-        info: (msg: string) => logs.push(`INFO: ${msg}`),
-        debug: (msg: string) => logs.push(`DEBUG: ${msg}`),
-        warn: (msg: string) => logs.push(`WARN: ${msg}`),
-      };
+      const originalLog = console.log;
+      console.log = (msg: string) => logs.push(msg);
 
-      const sm = new ServiceManager({ debug: true, logger: customLogger });
-      class TestService {}
-      sm.get(TestService);
+      // Set log level to info (default)
+      Config.set('settings.logger.logLevel', 'info');
 
-      ok(logs.some(l => l.includes('DEBUG:')), 'Should have debug logs');
-      ok(logs.some(l => l.includes('Resolving TestService')), 'Should log resolution');
-      ok(logs.some(l => l.includes('Instantiating new TestService')), 'Should log instantiation');
+      try {
+        const sm = new ServiceManager({ debug: true });
+        class TestService {}
+        sm.get(TestService);
+
+        ok(logs.some(l => l.includes('[ServiceManager]')), 'Should have ServiceManager logs');
+        ok(logs.some(l => l.includes('Creating TestService')), 'Should log service creation');
+      } finally {
+        console.log = originalLog;
+        Config.remove('settings.logger.logLevel');
+      }
+    });
+
+    it('should log detailed debug messages when debug mode is enabled and log level is debug', () => {
+      const logs: string[] = [];
+      const originalLog = console.log;
+      console.log = (msg: string) => logs.push(msg);
+
+      // Set log level to debug to see debug messages
+      Config.set('settings.logger.logLevel', 'debug');
+
+      try {
+        const sm = new ServiceManager({ debug: true });
+        class TestService {}
+        sm.get(TestService);
+
+        ok(logs.some(l => l.includes('Resolving TestService')), 'Should log resolution');
+        ok(logs.some(l => l.includes('Instantiating new TestService')), 'Should log instantiation');
+      } finally {
+        console.log = originalLog;
+        Config.remove('settings.logger.logLevel');
+      }
     });
 
     it('should track resolution chain in debug mode', () => {
       const logs: string[] = [];
-      const customLogger = {
-        info: (msg: string) => logs.push(`INFO: ${msg}`),
-        debug: (msg: string) => logs.push(`DEBUG: ${msg}`),
-        warn: (msg: string) => logs.push(`WARN: ${msg}`),
-      };
+      const originalLog = console.log;
+      console.log = (msg: string) => logs.push(msg);
 
-      const sm = new ServiceManager({ debug: true, logger: customLogger });
+      // Set log level to debug
+      Config.set('settings.logger.logLevel', 'debug');
 
-      class DependencyService {
-        getValue() { return 42; }
+      try {
+        const sm = new ServiceManager({ debug: true });
+
+        class DependencyService {
+          getValue() { return 42; }
+        }
+
+        class ParentService {
+          @dependency
+          dep!: DependencyService;
+        }
+
+        sm.get(ParentService);
+
+        // Should show nested resolution
+        ok(logs.some(l => l.includes('Resolving DependencyService') && l.includes('requested by')),
+          'Should show which service requested the dependency');
+      } finally {
+        console.log = originalLog;
+        Config.remove('settings.logger.logLevel');
       }
-
-      class ParentService {
-        @dependency
-        dep!: DependencyService;
-      }
-
-      sm.get(ParentService);
-
-      // Should show nested resolution
-      ok(logs.some(l => l.includes('Resolving DependencyService') && l.includes('requested by')),
-        'Should show which service requested the dependency');
     });
 
-    it('should log register() calls', () => {
+    it('should log register() calls when debug is enabled', () => {
       const logs: string[] = [];
-      const customLogger = {
-        info: (msg: string) => logs.push(`INFO: ${msg}`),
-        debug: (msg: string) => logs.push(`DEBUG: ${msg}`),
-        warn: (msg: string) => logs.push(`WARN: ${msg}`),
-      };
+      const originalLog = console.log;
+      console.log = (msg: string) => logs.push(msg);
 
-      const sm = new ServiceManager({ logging: true, logger: customLogger });
-      class TestService {}
-      sm.register(TestService);
+      // Set log level to info
+      Config.set('settings.logger.logLevel', 'info');
 
-      ok(logs.some(l => l.includes('Registering TestService')), 'Should log registration');
-      ok(logs.some(l => l.includes('lazy')), 'Should indicate lazy initialization');
+      try {
+        const sm = new ServiceManager({ debug: true });
+        class TestService {}
+        sm.register(TestService);
+
+        ok(logs.some(l => l.includes('Registering TestService')), 'Should log registration');
+        ok(logs.some(l => l.includes('lazy')), 'Should indicate lazy initialization');
+      } finally {
+        console.log = originalLog;
+        Config.remove('settings.logger.logLevel');
+      }
     });
 
-    it('should log set() calls', () => {
+    it('should log set() calls when debug is enabled', () => {
       const logs: string[] = [];
-      const customLogger = {
-        info: (msg: string) => logs.push(`INFO: ${msg}`),
-        debug: (msg: string) => logs.push(`DEBUG: ${msg}`),
-        warn: (msg: string) => logs.push(`WARN: ${msg}`),
-      };
+      const originalLog = console.log;
+      console.log = (msg: string) => logs.push(msg);
 
-      const sm = new ServiceManager({ logging: true, logger: customLogger });
-      class TestService {}
-      sm.set(TestService, new TestService());
+      // Set log level to info
+      Config.set('settings.logger.logLevel', 'info');
 
-      ok(logs.some(l => l.includes('Setting TestService')), 'Should log set operation');
+      try {
+        const sm = new ServiceManager({ debug: true });
+        class TestService {}
+        sm.set(TestService, new TestService());
+
+        ok(logs.some(l => l.includes('Setting TestService')), 'Should log set operation');
+      } finally {
+        console.log = originalLog;
+        Config.remove('settings.logger.logLevel');
+      }
     });
 
     it('should log boot() calls', async () => {
       const logs: string[] = [];
-      const customLogger = {
-        info: (msg: string) => logs.push(`INFO: ${msg}`),
-        debug: (msg: string) => logs.push(`DEBUG: ${msg}`),
-        warn: (msg: string) => logs.push(`WARN: ${msg}`),
-      };
+      const originalLog = console.log;
+      console.log = (msg: string) => logs.push(msg);
 
-      const sm = new ServiceManager({ logging: true, debug: true, logger: customLogger });
+      // Set log level to debug to see all logs
+      Config.set('settings.logger.logLevel', 'debug');
 
-      class BootableService {
-        boot() {}
+      try {
+        const sm = new ServiceManager({ debug: true });
+
+        class BootableService {
+          boot() {}
+        }
+
+        sm.register(BootableService);
+        await sm.boot();
+
+        ok(logs.some(l => l.includes('Booting')), 'Should log boot operation');
+        ok(logs.some(l => l.includes('Boot completed')), 'Should log boot completion');
+      } finally {
+        console.log = originalLog;
+        Config.remove('settings.logger.logLevel');
       }
-
-      sm.register(BootableService);
-      await sm.boot();
-
-      ok(logs.some(l => l.includes('Booting')), 'Should log boot operation');
-      ok(logs.some(l => l.includes('Boot completed')), 'Should log boot completion');
     });
 
-    it('should log ServiceFactory invocations', () => {
+    it('should log ServiceFactory invocations in debug mode', () => {
       const logs: string[] = [];
-      const customLogger = {
-        info: (msg: string) => logs.push(`INFO: ${msg}`),
-        debug: (msg: string) => logs.push(`DEBUG: ${msg}`),
-        warn: (msg: string) => logs.push(`WARN: ${msg}`),
-      };
+      const originalLog = console.log;
+      console.log = (msg: string) => logs.push(msg);
 
-      const sm = new ServiceManager({ debug: true, logger: customLogger });
+      // Set log level to debug
+      Config.set('settings.logger.logLevel', 'debug');
 
-      class TestService {}
-      const factory = new ServiceFactory(() => [TestService, new TestService()]);
-      sm.get(factory);
+      try {
+        const sm = new ServiceManager({ debug: true });
 
-      ok(logs.some(l => l.includes('ServiceFactory')), 'Should log factory usage');
+        class TestService {}
+        const factory = new ServiceFactory(() => [TestService, new TestService()]);
+        sm.get(factory);
+
+        ok(logs.some(l => l.includes('ServiceFactory')), 'Should log factory usage');
+      } finally {
+        console.log = originalLog;
+        Config.remove('settings.logger.logLevel');
+      }
     });
 
   });

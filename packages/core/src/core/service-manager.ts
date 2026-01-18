@@ -7,6 +7,7 @@ import 'reflect-metadata';
 // FoalTS
 import { Class, ClassOrAbstractClass } from './class.interface';
 import { Config } from './config';
+import { Logger } from './logging';
 
 export interface IDependency {
   propertyKey: string;
@@ -190,27 +191,6 @@ interface ServiceEntry {
 }
 
 /**
- * Logger interface for ServiceManager.
- * Allows custom logging implementations.
- *
- * @export
- */
-export interface ServiceManagerLogger {
-  info(message: string): void;
-  debug(message: string): void;
-  warn(message: string): void;
-}
-
-/**
- * Default console logger implementation.
- */
-const defaultLogger: ServiceManagerLogger = {
-  info: (msg: string) => console.log(`[ServiceManager] ${msg}`),
-  debug: (msg: string) => console.log(`[ServiceManager:DEBUG] ${msg}`),
-  warn: (msg: string) => console.warn(`[ServiceManager] ${msg}`),
-};
-
-/**
  * Options for ServiceManager configuration.
  *
  * @export
@@ -218,19 +198,11 @@ const defaultLogger: ServiceManagerLogger = {
 export interface ServiceManagerOptions {
   /**
    * Enable debug mode for detailed resolution logging.
+   * When enabled, logs detailed information about service resolution chain.
+   * Log level is controlled by settings.logger.logLevel configuration.
    * Default: false
    */
   debug?: boolean;
-  /**
-   * Enable info-level logging for service lifecycle events.
-   * Default: false
-   */
-  logging?: boolean;
-  /**
-   * Custom logger implementation.
-   * Default: console-based logger
-   */
-  logger?: ServiceManagerLogger;
 }
 
 /**
@@ -246,8 +218,7 @@ export class ServiceManager {
 
   // Logging configuration
   private readonly debugMode: boolean;
-  private readonly loggingEnabled: boolean;
-  private readonly logger: ServiceManagerLogger;
+  private readonly logger: Logger;
 
   // Resolution tracking for debug mode
   private resolutionStack: string[] = [];
@@ -260,8 +231,7 @@ export class ServiceManager {
    */
   constructor(options?: ServiceManagerOptions) {
     this.debugMode = options?.debug ?? false;
-    this.loggingEnabled = options?.logging ?? false;
-    this.logger = options?.logger ?? defaultLogger;
+    this.logger = new Logger();
   }
 
   /**
@@ -278,11 +248,11 @@ export class ServiceManager {
   }
 
   /**
-   * Log an info-level message (when logging is enabled).
+   * Log an info-level message (only when debug mode is enabled).
    */
   private logInfo(message: string): void {
-    if (this.loggingEnabled || this.debugMode) {
-      this.logger.info(message);
+    if (this.debugMode) {
+      this.logger.info(`[ServiceManager] ${message}`);
     }
   }
 
@@ -292,7 +262,7 @@ export class ServiceManager {
   private logDebug(message: string): void {
     if (this.debugMode) {
       const indent = '  '.repeat(this.resolutionDepth);
-      this.logger.debug(`${indent}${message}`);
+      this.logger.debug(`[ServiceManager] ${indent}${message}`);
     }
   }
 

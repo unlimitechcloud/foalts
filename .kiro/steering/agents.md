@@ -231,7 +231,7 @@ cd packages/core && npm run lint
 
 ## Sistema de Logging
 
-El ServiceManager incluye un sistema de logging configurable para debugging:
+El ServiceManager usa el `Logger` de FoalTS para debugging. El logging está deshabilitado por defecto y solo se activa con `debug: true`.
 
 ### Configuración
 
@@ -239,30 +239,30 @@ El ServiceManager incluye un sistema de logging configurable para debugging:
 // Sin logging (por defecto)
 const sm = new ServiceManager();
 
-// Info-level logging
-const sm = new ServiceManager({ logging: true });
-
-// Debug detallado (incluye cadena de resolución)
+// Habilitar debug logging
 const sm = new ServiceManager({ debug: true });
+```
 
-// Logger personalizado
-const sm = new ServiceManager({
-  logging: true,
-  debug: true,
-  logger: {
-    info: (msg) => console.log(msg),
-    debug: (msg) => console.log(msg),
-    warn: (msg) => console.warn(msg),
-  }
-});
+### Control de Nivel de Log
+
+El nivel de log se controla via configuración estándar de FoalTS:
+
+```yaml
+# config/default.yml
+settings:
+  logger:
+    logLevel: debug  # debug, info, warn, error
+    format: raw      # raw, dev, json, none
 ```
 
 ### Niveles de Log
 
-| Opción | Default | Descripción |
-|--------|---------|-------------|
-| `logging` | `false` | Eventos de registro, creación, boot |
-| `debug` | `false` | Cadena de resolución, inyección, caché |
+| Nivel Logger | Output ServiceManager |
+|--------------|----------------------|
+| `debug` | Cadena de resolución completa con indentación |
+| `info` | Creación de servicios, registro, boot |
+| `warn` | Advertencias (ej: metadata faltante) |
+| `error` | Solo errores |
 
 ### Tests de Logging
 

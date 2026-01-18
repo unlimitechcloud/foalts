@@ -16,6 +16,5 @@ export {
   ServiceManager,
   ServiceFactory,
   LazyService,
-  ServiceManagerLogger,
   ServiceManagerOptions
 } from './service-manager';
