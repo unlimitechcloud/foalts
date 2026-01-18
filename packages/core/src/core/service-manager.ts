@@ -64,6 +64,25 @@ export function Dependency(id: string) {
  */
 export function dependency(target: any, propertyKey: string) {
   const serviceClass = Reflect.getMetadata('design:type', target, propertyKey);
+
+  // Validate that metadata was emitted
+  if (serviceClass === undefined) {
+    const className = target.constructor?.name || 'UnknownClass';
+    throw new Error(
+      `@dependency decorator on "${propertyKey}" in ${className}: ` +
+      `Unable to resolve the service type. The TypeScript metadata was not emitted.\n\n` +
+      `This usually happens when:\n` +
+      `  1. "emitDecoratorMetadata" is not enabled in tsconfig.json\n` +
+      `  2. Your build tool (esbuild, swc, etc.) doesn't support emitDecoratorMetadata\n` +
+      `  3. The property type is an interface (interfaces don't exist at runtime)\n\n` +
+      `Solutions:\n` +
+      `  - Add "emitDecoratorMetadata": true to your tsconfig.json\n` +
+      `  - Use @Dependency('serviceId') with a string identifier instead\n` +
+      `  - If using Vitest/esbuild, configure it to use ts-node or swc\n` +
+      `  - Use a class instead of an interface for the dependency type`
+    );
+  }
+
   const dependencies: IDependency[] = [ ...(Reflect.getMetadata('dependencies', target) || []) ];
   dependencies.push({ propertyKey, serviceClassOrID: serviceClass });
   Reflect.defineMetadata('dependencies', dependencies, target);
@@ -91,6 +110,16 @@ export function lazy<T>(targetOrServiceClass: any, propertyKey?: string): any {
     // Get the service type from TypeScript metadata
     const serviceType = Reflect.getMetadata('design:type', target, propertyKey);
 
+    // Warn if metadata is not available (but don't throw - it might be a LazyService assignment)
+    if (serviceType === undefined || serviceType === Object) {
+      const className = target.constructor?.name || 'UnknownClass';
+      console.warn(
+        `@lazy decorator on "${propertyKey}" in ${className}: ` +
+        `Unable to resolve the service type from metadata. ` +
+        `Consider using @lazy(ServiceClass) syntax instead for explicit type specification.`
+      );
+    }
+
     const lazyDependencies: ILazyDependency[] = [ ...(Reflect.getMetadata('lazyDependencies', target) || []) ];
     lazyDependencies.push({ propertyKey, serviceType });
     Reflect.defineMetadata('lazyDependencies', lazyDependencies, target);
@@ -99,6 +128,15 @@ export function lazy<T>(targetOrServiceClass: any, propertyKey?: string): any {
 
   // Case 2: Used as @lazy(ServiceClass) - truly lazy with getter
   const serviceClass = targetOrServiceClass;
+
+  // Validate that a valid class was provided
+  if (serviceClass === undefined || serviceClass === null) {
+    throw new Error(
+      `@lazy(ServiceClass) decorator: The service class argument is ${serviceClass}. ` +
+      `Make sure to pass a valid class reference.`
+    );
+  }
+
   return (target: any, propertyKey: string) => {
     const lazyDependencies: ILazyDependency[] = [ ...(Reflect.getMetadata('lazyDependencies', target) || []) ];
     lazyDependencies.push({ propertyKey, serviceType: serviceClass });
