@@ -43,7 +43,7 @@
     "lib/"
   ],
   "dependencies": {
-    "@foal/core": "npm:@unlimitechcloud/foalts.core@5.1.1003",
+    "@foal/core": "npm:@unlimitechcloud/foalts.core@5.1.1005",
     "swagger-ui-dist": "~5.30.2",
     "@unlimitechcloud/foalts.core": "file:../core"
   },

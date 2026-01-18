@@ -45,7 +45,7 @@
   "license": "MIT",
   "dependencies": {
     "@foal/aws-s3": "^5.1.1",
-    "@foal/core": "npm:@unlimitechcloud/foalts.core@5.1.1003",
+    "@foal/core": "npm:@unlimitechcloud/foalts.core@5.1.1005",
     "@foal/graphiql": "^5.1.1",
     "@foal/graphql": "^5.1.1",
     "@foal/social": "^5.1.1",

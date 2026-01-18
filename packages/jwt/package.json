@@ -42,7 +42,7 @@
     "lib/"
   ],
   "dependencies": {
-    "@foal/core": "npm:@unlimitechcloud/foalts.core@5.1.1003",
+    "@foal/core": "npm:@unlimitechcloud/foalts.core@5.1.1005",
     "jsonwebtoken": "~9.0.2",
     "@unlimitechcloud/foalts.core": "file:../core"
   },
