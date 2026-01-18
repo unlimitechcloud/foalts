@@ -217,6 +217,46 @@ cd packages/core && npm run lint
 4. **Tests obligatorios** - Toda nueva funcionalidad debe tener cobertura de tests
 5. **TypeScript estricto** - Mantener tipado fuerte en todas las implementaciones
 
+## Proceso de Incremento de Versión
+
+Al incrementar la versión de `@unlimitechcloud/foalts.core`, se deben actualizar las referencias en todos los paquetes que dependen de él.
+
+### Archivos a Actualizar
+
+1. **`packages/core/package.json`** - Versión principal
+2. **Otros paquetes** - Actualizar la referencia `@foal/core` en:
+   - `packages/*/package.json` (todos los paquetes: jwt, typeorm, graphql, etc.)
+   - `packages/cli/package.json`
+   - `packages/cli/specs/app/*.json`
+   - `packages/cli/fixtures/*/package*.json`
+   - `packages/cli/templates/app/package*.json`
+   - `examples/demo-app/package.json`
+   - `tests/*/package.json`
+
+### Comando para Buscar Referencias
+
+```bash
+# Buscar todas las referencias a la versión actual
+grep -r "5.1.1005" --include="package.json" .
+```
+
+### Comando para Actualizar (sed)
+
+```bash
+# Reemplazar versión antigua por nueva en todos los package.json
+find . -name "package.json" -exec sed -i 's/5.1.1005/5.1.1006/g' {} \;
+```
+
+### Después de Actualizar
+
+```bash
+# Regenerar package-lock.json
+npm install
+
+# Verificar que los tests pasen
+npx lerna run test
+```
+
 ## Estado Actual
 
 - Base: FoalTS 5.1.1
