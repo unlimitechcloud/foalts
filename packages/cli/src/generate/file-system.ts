@@ -484,7 +484,7 @@ export class FileSystem {
 
     pkg.dependencies[name] = version;
 
-    writeFileSync(this.parse('package.json'), JSON.stringify(pkg, null, 2));
+    writeFileSync(this.parse('package.json'), JSON.stringify(pkg, null, 2) + '\n');
 
     this.currentDir = initialCurrentDir;
     return this;
