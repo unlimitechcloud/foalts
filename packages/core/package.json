@@ -1,6 +1,6 @@
 {
   "name": "@unlimitechcloud/foalts.core",
-  "version": "5.1.1002",
+  "version": "5.1.1003",
   "description": "Full-featured Node.js framework, with no complexity",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",

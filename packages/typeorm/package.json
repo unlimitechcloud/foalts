@@ -47,7 +47,7 @@
     "lib/"
   ],
   "dependencies": {
-    "@foal/core": "npm:@unlimitechcloud/foalts.core@5.1.1002",
+    "@foal/core": "npm:@unlimitechcloud/foalts.core@5.1.1003",
     "@unlimitechcloud/foalts.core": "file:../core"
   },
   "peerDependencies": {
