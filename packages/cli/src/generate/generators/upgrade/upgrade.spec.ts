@@ -20,6 +20,7 @@ describe('upgrade', () => {
       const actualDependencies = fs.getProjectDependencies();
       const expectedDependencies = [
         { name: '@foal/core', version: '3.0.0' },
+        { name: '@unlimitechcloud/foalts.core', version: 'file:../../../../packages/core' },
         { name: '@foal/foobar', version: '3.0.0' },
         { name: 'another-dependency', version: '^1.0.0' }
       ];
@@ -51,6 +52,7 @@ describe('upgrade', () => {
       const actualDependencies = fs.getProjectDependencies();
       const expectedDependencies = [
         { name: '@foal/core', version: '3.0.0' },
+        { name: '@unlimitechcloud/foalts.core', version: 'file:../../../../packages/core' },
         { name: '@foal/foobar', version: '3.0.0' },
         { name: 'another-dependency', version: '^1.0.0' }
       ];
