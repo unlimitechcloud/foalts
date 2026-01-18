@@ -14,7 +14,7 @@
     "node": ">=22.0.0"
   },
   "dependencies": {
-    "@foal/core": "^5.1.1",
+    "@foal/core": "npm:@unlimitechcloud/foalts.core@5.1.1002",
     "@foal/jwks-rsa": "^5.1.1",
     "@foal/jwt": "^5.1.1",
     "@foal/mongodb": "^5.1.1",
@@ -30,7 +30,8 @@
     "superagent": "~9.0.1",
     "supertest": "~7.1.4",
     "typeorm": "0.3.27",
-    "yamljs": "~0.3.0"
+    "yamljs": "~0.3.0",
+    "@unlimitechcloud/foalts.core": "file:../../packages/core"
   },
   "devDependencies": {
     "@types/mocha": "10.0.10",

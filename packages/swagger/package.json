@@ -36,15 +36,16 @@
   },
   "homepage": "https://github.com/FoalTS",
   "contributors": [
-    "Loïc Poullain"
+    "Lo\u00efc Poullain"
   ],
   "license": "MIT",
   "files": [
     "lib/"
   ],
   "dependencies": {
-    "@foal/core": "^5.1.1",
-    "swagger-ui-dist": "~5.30.2"
+    "@foal/core": "npm:@unlimitechcloud/foalts.core@5.1.1002",
+    "swagger-ui-dist": "~5.30.2",
+    "@unlimitechcloud/foalts.core": "file:../core"
   },
   "devDependencies": {
     "@types/mocha": "10.0.10",
