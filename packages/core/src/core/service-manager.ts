@@ -312,9 +312,24 @@ export class ServiceManager {
    * @returns {*} - The service instance.
    * @memberof ServiceManager
    */
-  get<T>(identifier: ClassOrAbstractClass<T> | ServiceFactory<T>): T;
-  get(identifier: string): any;
-  get(identifier: string|ClassOrAbstractClass|ServiceFactory<any>): any {
+  get<T>(identifier: ClassOrAbstractClass<T> | ServiceFactory<T>, context?: { parentClass?: string, propertyKey?: string }): T;
+  get(identifier: string, context?: { parentClass?: string, propertyKey?: string }): any;
+  get(identifier: string|ClassOrAbstractClass|ServiceFactory<any>, context?: { parentClass?: string, propertyKey?: string }): any {
+    // Validate identifier is not undefined/null
+    if (identifier === undefined || identifier === null) {
+      const contextMsg = context
+        ? ` while resolving dependency "${context.propertyKey}" in ${context.parentClass}`
+        : '';
+      throw new Error(
+        `Cannot resolve service: identifier is ${identifier}${contextMsg}. ` +
+        `This usually happens when:\n` +
+        `  1. The dependency class is not properly imported\n` +
+        `  2. There's a circular dependency between modules\n` +
+        `  3. The TypeScript compiler option "emitDecoratorMetadata" is not enabled\n` +
+        `  4. The dependency type is an interface (interfaces don't exist at runtime)`
+      );
+    }
+
     // @ts-ignore : Type 'ServiceManager' is not assignable to type 'Service'.
     if (identifier === ServiceManager || identifier.isServiceManager === true) {
       // @ts-ignore : Type 'ServiceManager' is not assignable to type 'Service'.
@@ -383,9 +398,25 @@ export class ServiceManager {
 
   private injectDependencies(serviceClass: Class, service: any): void {
     const dependencies: IDependency[] = Reflect.getMetadata('dependencies', serviceClass.prototype) || [];
+    const serviceClassName = serviceClass.name || 'UnknownService';
 
     for (const dependency of dependencies) {
-      (service as any)[dependency.propertyKey] = this.get(dependency.serviceClassOrID as any);
+      // Validate the dependency identifier
+      if (dependency.serviceClassOrID === undefined || dependency.serviceClassOrID === null) {
+        throw new Error(
+          `Cannot resolve dependency "${dependency.propertyKey}" in ${serviceClassName}: ` +
+          `the service type is undefined. ` +
+          `This usually happens when:\n` +
+          `  1. The dependency class is not properly imported\n` +
+          `  2. There's a circular dependency between modules\n` +
+          `  3. The TypeScript compiler option "emitDecoratorMetadata" is not enabled\n` +
+          `  4. The dependency type is an interface (interfaces don't exist at runtime)`
+        );
+      }
+      (service as any)[dependency.propertyKey] = this.get(
+        dependency.serviceClassOrID as any,
+        { parentClass: serviceClassName, propertyKey: dependency.propertyKey }
+      );
     }
 
     // Inject ServiceManager into @lazy decorated properties
@@ -398,6 +429,15 @@ export class ServiceManager {
       if (propertyValue instanceof LazyService) {
         injectLazyService(this, propertyValue);
       } else if (lazyDep.serviceType && !propertyValue) {
+        // Validate the lazy dependency type
+        if (lazyDep.serviceType === undefined || lazyDep.serviceType === null) {
+          throw new Error(
+            `Cannot resolve lazy dependency "${lazyDep.propertyKey}" in ${serviceClassName}: ` +
+            `the service type is undefined. ` +
+            `Make sure to use @lazy(ServiceClass) with an explicit class reference.`
+          );
+        }
+
         // For @lazy(ServiceClass) with getter, define property on instance
         if (lazyDep.serviceType !== LazyService && lazyDep.serviceType !== Object) {
           const cacheKey = Symbol(`__lazy_cache_${lazyDep.propertyKey}`);
