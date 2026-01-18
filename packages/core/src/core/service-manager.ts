@@ -190,6 +190,50 @@ interface ServiceEntry {
 }
 
 /**
+ * Logger interface for ServiceManager.
+ * Allows custom logging implementations.
+ *
+ * @export
+ */
+export interface ServiceManagerLogger {
+  info(message: string): void;
+  debug(message: string): void;
+  warn(message: string): void;
+}
+
+/**
+ * Default console logger implementation.
+ */
+const defaultLogger: ServiceManagerLogger = {
+  info: (msg: string) => console.log(`[ServiceManager] ${msg}`),
+  debug: (msg: string) => console.log(`[ServiceManager:DEBUG] ${msg}`),
+  warn: (msg: string) => console.warn(`[ServiceManager] ${msg}`),
+};
+
+/**
+ * Options for ServiceManager configuration.
+ *
+ * @export
+ */
+export interface ServiceManagerOptions {
+  /**
+   * Enable debug mode for detailed resolution logging.
+   * Default: false
+   */
+  debug?: boolean;
+  /**
+   * Enable info-level logging for service lifecycle events.
+   * Default: false
+   */
+  logging?: boolean;
+  /**
+   * Custom logger implementation.
+   * Default: console-based logger
+   */
+  logger?: ServiceManagerLogger;
+}
+
+/**
  * Identity Mapper that instantiates and returns service singletons.
  *
  * @export
@@ -199,6 +243,58 @@ export class ServiceManager {
 
   private readonly map: Map<string|ClassOrAbstractClass|ServiceFactory<any>, ServiceEntry>  = new Map();
   private initialized: boolean = false;
+
+  // Logging configuration
+  private readonly debugMode: boolean;
+  private readonly loggingEnabled: boolean;
+  private readonly logger: ServiceManagerLogger;
+
+  // Resolution tracking for debug mode
+  private resolutionStack: string[] = [];
+  private resolutionDepth: number = 0;
+
+  /**
+   * Creates a new ServiceManager instance.
+   *
+   * @param {ServiceManagerOptions} [options] - Configuration options.
+   */
+  constructor(options?: ServiceManagerOptions) {
+    this.debugMode = options?.debug ?? false;
+    this.loggingEnabled = options?.logging ?? false;
+    this.logger = options?.logger ?? defaultLogger;
+  }
+
+  /**
+   * Get the identifier name for logging purposes.
+   */
+  private getIdentifierName(identifier: string|ClassOrAbstractClass|ServiceFactory<any>): string {
+    if (typeof identifier === 'string') {
+      return `"${identifier}"`;
+    }
+    if (identifier instanceof ServiceFactory) {
+      return 'ServiceFactory';
+    }
+    return (identifier as any).name || 'UnknownClass';
+  }
+
+  /**
+   * Log an info-level message (when logging is enabled).
+   */
+  private logInfo(message: string): void {
+    if (this.loggingEnabled || this.debugMode) {
+      this.logger.info(message);
+    }
+  }
+
+  /**
+   * Log a debug-level message (only when debug mode is enabled).
+   */
+  private logDebug(message: string): void {
+    if (this.debugMode) {
+      const indent = '  '.repeat(this.resolutionDepth);
+      this.logger.debug(`${indent}${message}`);
+    }
+  }
 
   /**
    * Boot all services : call the method "boot" of each service if it exists.
@@ -213,26 +309,35 @@ export class ServiceManager {
    */
   async boot(identifier?: string|ClassOrAbstractClass): Promise<void> {
     if (typeof identifier !== 'undefined') {
+      const identifierName = this.getIdentifierName(identifier);
+      this.logInfo(`Booting service: ${identifierName}`);
+
       const value = this.map.get(identifier);
       if (!value) {
         throw new Error(`No service was found with the identifier "${identifier}".`);
       }
       // Ensure service is instantiated before booting
       if (value.target && !value.service) {
+        this.logDebug(`Instantiating ${identifierName} before boot`);
         this.get(identifier as any);
       }
       await this.bootService(value);
+      this.logDebug(`Boot completed for ${identifierName}`);
     } else {
+      this.logInfo('Booting all registered services...');
       const promises: Promise<void>[] = [];
       for (const [key, value] of this.map.entries()) {
+        const keyName = this.getIdentifierName(key);
         // Ensure service is instantiated before booting
         if (value.target && !value.service) {
+          this.logDebug(`Instantiating ${keyName} before boot`);
           this.get(key as any);
         }
         promises.push(this.bootService(value));
       }
       await Promise.all(promises);
       this.initialized = true;
+      this.logInfo(`Boot completed. ${this.map.size} services initialized.`);
     }
   }
 
@@ -307,15 +412,21 @@ export class ServiceManager {
       opts.boot = true;
     }
 
+    const identifierName = this.getIdentifierName(identifier);
+    const targetName = target instanceof ServiceFactory ? 'ServiceFactory' : (target as any).name || 'UnknownClass';
+
     if (opts.init) {
       // Immediate initialization
+      this.logInfo(`Registering ${identifierName} -> ${targetName} (immediate initialization)`);
       const service = this.get(target as any);
       this.map.set(identifier, {
         boot: false, // Already handled during get
         service
       });
+      this.logDebug(`${identifierName} instantiated immediately`);
     } else {
       // Lazy initialization
+      this.logInfo(`Registering ${identifierName} -> ${targetName} (lazy, boot=${opts.boot})`);
       this.map.set(identifier, {
         boot: opts.boot,
         target
@@ -336,6 +447,10 @@ export class ServiceManager {
    * @memberof ServiceManager
    */
   set(identifier: string|ClassOrAbstractClass, service: any, options: { boot: boolean } = { boot: false }): this {
+    const identifierName = this.getIdentifierName(identifier);
+    const serviceName = service?.constructor?.name || 'instance';
+    this.logInfo(`Setting ${identifierName} = ${serviceName} (boot=${options.boot})`);
+
     this.map.set(identifier, {
       boot: options.boot,
       service,
@@ -353,6 +468,8 @@ export class ServiceManager {
   get<T>(identifier: ClassOrAbstractClass<T> | ServiceFactory<T>, context?: { parentClass?: string, propertyKey?: string }): T;
   get(identifier: string, context?: { parentClass?: string, propertyKey?: string }): any;
   get(identifier: string|ClassOrAbstractClass|ServiceFactory<any>, context?: { parentClass?: string, propertyKey?: string }): any {
+    const identifierName = this.getIdentifierName(identifier);
+
     // Validate identifier is not undefined/null
     if (identifier === undefined || identifier === null) {
       const contextMsg = context
@@ -368,68 +485,95 @@ export class ServiceManager {
       );
     }
 
-    // @ts-ignore : Type 'ServiceManager' is not assignable to type 'Service'.
-    if (identifier === ServiceManager || identifier.isServiceManager === true) {
+    // Track resolution chain for debug mode
+    const parentInfo = context ? `${context.parentClass}.${context.propertyKey}` : 'root';
+    this.resolutionStack.push(identifierName);
+    this.resolutionDepth++;
+
+    if (context) {
+      this.logDebug(`Resolving ${identifierName} (requested by ${parentInfo})`);
+    } else {
+      this.logDebug(`Resolving ${identifierName}`);
+    }
+
+    try {
       // @ts-ignore : Type 'ServiceManager' is not assignable to type 'Service'.
-      return this;
-    }
-
-    // Get the service if it exists.
-    const value = this.map.get(identifier);
-    if (value) {
-      // Handle lazy initialization
-      if (value.target && !value.service) {
-        const [serviceClass, service] = this.instantiateService(value.target);
-        value.service = service;
-        this.injectDependencies(serviceClass, service);
-
-        // Boot immediately if initialized and boot is true
-        if (this.initialized && value.boot && service.boot) {
-          const result = service.boot();
-          if (result && typeof result.then === 'function') {
-            const identifierName = typeof identifier === 'string'
-              ? identifier
-              : (identifier as any).name || 'unknown';
-            throw new Error(
-              `Lazy initialized services must not have async 'boot' hooks: ${identifierName}`
-            );
-          }
-          value.boot = false;
-        }
-
-        value.target = undefined;
+      if (identifier === ServiceManager || identifier.isServiceManager === true) {
+        this.logDebug(`Returning ServiceManager instance`);
+        // @ts-ignore : Type 'ServiceManager' is not assignable to type 'Service'.
+        return this;
       }
-      return value.service;
+
+      // Get the service if it exists.
+      const value = this.map.get(identifier);
+      if (value) {
+        // Handle lazy initialization
+        if (value.target && !value.service) {
+          this.logInfo(`Creating ${identifierName} (lazy initialization triggered)`);
+          const [serviceClass, service] = this.instantiateService(value.target);
+          value.service = service;
+          this.logDebug(`Injecting dependencies into ${identifierName}`);
+          this.injectDependencies(serviceClass, service);
+
+          // Boot immediately if initialized and boot is true
+          if (this.initialized && value.boot && service.boot) {
+            this.logDebug(`Executing boot() for ${identifierName}`);
+            const result = service.boot();
+            if (result && typeof result.then === 'function') {
+              throw new Error(
+                `Lazy initialized services must not have async 'boot' hooks: ${identifierName}`
+              );
+            }
+            value.boot = false;
+          }
+
+          value.target = undefined;
+          this.logDebug(`${identifierName} ready`);
+        } else {
+          this.logDebug(`${identifierName} found in cache`);
+        }
+        return value.service;
+      }
+
+      // Throw an error if the identifier is a string and no service was found in the map.
+      if (typeof identifier === 'string') {
+        throw new Error(`No service was found with the identifier "${identifier}".`);
+      }
+
+      if (!(identifier instanceof ServiceFactory) && identifier.hasOwnProperty('concreteClassConfigPath')) {
+        this.logDebug(`${identifierName} has concreteClassConfigPath, resolving from config`);
+        const concreteClass = this.getConcreteClassFromConfig(identifier);
+        return this.get(concreteClass);
+      }
+
+      // If the service has not been instantiated yet then do it.
+      this.logInfo(`Creating ${identifierName} (first access)`);
+      const [serviceClass, service] = this.instantiateService(identifier as Class|ServiceFactory<any>);
+
+      this.logDebug(`Injecting dependencies into ${identifierName}`);
+      this.injectDependencies(serviceClass, service);
+
+      // Save the service using the identifier (could be a factory or a class).
+      this.map.set(identifier, {
+        boot: true,
+        service,
+      });
+
+      this.logDebug(`${identifierName} ready and cached`);
+      return service;
+    } finally {
+      this.resolutionStack.pop();
+      this.resolutionDepth--;
     }
-
-    // Throw an error if the identifier is a string and no service was found in the map.
-    if (typeof identifier === 'string') {
-      throw new Error(`No service was found with the identifier "${identifier}".`);
-    }
-
-    if (!(identifier instanceof ServiceFactory) && identifier.hasOwnProperty('concreteClassConfigPath')) {
-      const concreteClass = this.getConcreteClassFromConfig(identifier);
-      return this.get(concreteClass);
-    }
-
-    // If the service has not been instantiated yet then do it.
-    const [serviceClass, service] = this.instantiateService(identifier as Class|ServiceFactory<any>);
-
-    this.injectDependencies(serviceClass, service);
-
-    // Save the service using the identifier (could be a factory or a class).
-    this.map.set(identifier, {
-      boot: true,
-      service,
-    });
-
-    return service;
   }
 
   private instantiateService(target: Class|ServiceFactory<any>): [Class, any] {
     if (target instanceof ServiceFactory) {
+      this.logDebug(`Invoking ServiceFactory.create()`);
       return target.create(this);
     } else {
+      const className = (target as any).name || 'UnknownClass';
+      this.logDebug(`Instantiating new ${className}()`);
       return [target, new target()];
     }
   }
@@ -503,8 +647,11 @@ export class ServiceManager {
 
   private async bootService(value: ServiceEntry): Promise<void> {
     if (value.boot && value.service && value.service.boot) {
+      const serviceName = value.service.constructor?.name || 'UnknownService';
+      this.logDebug(`Executing boot() for ${serviceName}`);
       value.boot = false;
       await value.service.boot();
+      this.logDebug(`boot() completed for ${serviceName}`);
     }
   }
 

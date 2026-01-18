@@ -1351,4 +1351,153 @@ describe('ServiceManager', () => {
 
   });
 
+  describe('logging', () => {
+
+    it('should not log by default', () => {
+      const logs: string[] = [];
+      const originalLog = console.log;
+      console.log = (msg: string) => logs.push(msg);
+
+      try {
+        const sm = new ServiceManager();
+        class TestService {}
+        sm.get(TestService);
+
+        strictEqual(logs.length, 0, 'Should not log anything by default');
+      } finally {
+        console.log = originalLog;
+      }
+    });
+
+    it('should log info messages when logging is enabled', () => {
+      const logs: string[] = [];
+      const customLogger = {
+        info: (msg: string) => logs.push(`INFO: ${msg}`),
+        debug: (msg: string) => logs.push(`DEBUG: ${msg}`),
+        warn: (msg: string) => logs.push(`WARN: ${msg}`),
+      };
+
+      const sm = new ServiceManager({ logging: true, logger: customLogger });
+      class TestService {}
+      sm.get(TestService);
+
+      ok(logs.some(l => l.includes('INFO:')), 'Should have info logs');
+      ok(logs.some(l => l.includes('Creating TestService')), 'Should log service creation');
+    });
+
+    it('should log detailed debug messages when debug mode is enabled', () => {
+      const logs: string[] = [];
+      const customLogger = {
+        info: (msg: string) => logs.push(`INFO: ${msg}`),
+        debug: (msg: string) => logs.push(`DEBUG: ${msg}`),
+        warn: (msg: string) => logs.push(`WARN: ${msg}`),
+      };
+
+      const sm = new ServiceManager({ debug: true, logger: customLogger });
+      class TestService {}
+      sm.get(TestService);
+
+      ok(logs.some(l => l.includes('DEBUG:')), 'Should have debug logs');
+      ok(logs.some(l => l.includes('Resolving TestService')), 'Should log resolution');
+      ok(logs.some(l => l.includes('Instantiating new TestService')), 'Should log instantiation');
+    });
+
+    it('should track resolution chain in debug mode', () => {
+      const logs: string[] = [];
+      const customLogger = {
+        info: (msg: string) => logs.push(`INFO: ${msg}`),
+        debug: (msg: string) => logs.push(`DEBUG: ${msg}`),
+        warn: (msg: string) => logs.push(`WARN: ${msg}`),
+      };
+
+      const sm = new ServiceManager({ debug: true, logger: customLogger });
+
+      class DependencyService {
+        getValue() { return 42; }
+      }
+
+      class ParentService {
+        @dependency
+        dep!: DependencyService;
+      }
+
+      sm.get(ParentService);
+
+      // Should show nested resolution
+      ok(logs.some(l => l.includes('Resolving DependencyService') && l.includes('requested by')),
+        'Should show which service requested the dependency');
+    });
+
+    it('should log register() calls', () => {
+      const logs: string[] = [];
+      const customLogger = {
+        info: (msg: string) => logs.push(`INFO: ${msg}`),
+        debug: (msg: string) => logs.push(`DEBUG: ${msg}`),
+        warn: (msg: string) => logs.push(`WARN: ${msg}`),
+      };
+
+      const sm = new ServiceManager({ logging: true, logger: customLogger });
+      class TestService {}
+      sm.register(TestService);
+
+      ok(logs.some(l => l.includes('Registering TestService')), 'Should log registration');
+      ok(logs.some(l => l.includes('lazy')), 'Should indicate lazy initialization');
+    });
+
+    it('should log set() calls', () => {
+      const logs: string[] = [];
+      const customLogger = {
+        info: (msg: string) => logs.push(`INFO: ${msg}`),
+        debug: (msg: string) => logs.push(`DEBUG: ${msg}`),
+        warn: (msg: string) => logs.push(`WARN: ${msg}`),
+      };
+
+      const sm = new ServiceManager({ logging: true, logger: customLogger });
+      class TestService {}
+      sm.set(TestService, new TestService());
+
+      ok(logs.some(l => l.includes('Setting TestService')), 'Should log set operation');
+    });
+
+    it('should log boot() calls', async () => {
+      const logs: string[] = [];
+      const customLogger = {
+        info: (msg: string) => logs.push(`INFO: ${msg}`),
+        debug: (msg: string) => logs.push(`DEBUG: ${msg}`),
+        warn: (msg: string) => logs.push(`WARN: ${msg}`),
+      };
+
+      const sm = new ServiceManager({ logging: true, debug: true, logger: customLogger });
+
+      class BootableService {
+        boot() {}
+      }
+
+      sm.register(BootableService);
+      await sm.boot();
+
+      ok(logs.some(l => l.includes('Booting')), 'Should log boot operation');
+      ok(logs.some(l => l.includes('Boot completed')), 'Should log boot completion');
+    });
+
+    it('should log ServiceFactory invocations', () => {
+      const logs: string[] = [];
+      const customLogger = {
+        info: (msg: string) => logs.push(`INFO: ${msg}`),
+        debug: (msg: string) => logs.push(`DEBUG: ${msg}`),
+        warn: (msg: string) => logs.push(`WARN: ${msg}`),
+      };
+
+      const sm = new ServiceManager({ debug: true, logger: customLogger });
+
+      class TestService {}
+      const factory = new ServiceFactory(() => [TestService, new TestService()]);
+      sm.get(factory);
+
+      ok(logs.some(l => l.includes('ServiceFactory')), 'Should log factory usage');
+    });
+
+  });
+
 });
+

@@ -265,3 +265,56 @@ const userService = sm.get(UserService);
 | Pre-configured | `set()` | Already created | Mocks, external instances |
 | Lazy registration | `register()` | First `get()` | Interface→implementation mapping |
 | Custom creation | `ServiceFactory` | First `get()` | Complex initialization logic |
+
+### Debugging with Logging
+
+The `ServiceManager` includes a built-in logging system for debugging service resolution:
+
+```typescript
+import { ServiceManager, ServiceManagerLogger } from '@foal/core';
+
+// Enable info-level logging
+const sm = new ServiceManager({ logging: true });
+
+// Enable detailed debug logging (includes resolution chain)
+const sm = new ServiceManager({ debug: true });
+
+// Custom logger implementation
+const customLogger: ServiceManagerLogger = {
+  info: (msg) => myLogger.info(msg),
+  debug: (msg) => myLogger.debug(msg),
+  warn: (msg) => myLogger.warn(msg),
+};
+
+const sm = new ServiceManager({
+  logging: true,
+  debug: true,
+  logger: customLogger
+});
+```
+
+#### Log Levels
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `logging` | `false` | Info-level logs: registration, creation, boot events |
+| `debug` | `false` | Detailed logs: resolution chain, dependency injection, caching |
+
+#### Example Output (debug mode)
+
+```
+[ServiceManager] Creating UserService (first access)
+[ServiceManager:DEBUG] Resolving UserService
+[ServiceManager:DEBUG]   Instantiating new UserService()
+[ServiceManager:DEBUG]   Injecting dependencies into UserService
+[ServiceManager:DEBUG]     Resolving DatabaseService (requested by UserService.database)
+[ServiceManager:DEBUG]       Instantiating new DatabaseService()
+[ServiceManager:DEBUG]       DatabaseService ready and cached
+[ServiceManager:DEBUG]   UserService ready and cached
+```
+
+This helps trace:
+- Which service triggered the resolution of another
+- Whether services are being created or retrieved from cache
+- The order of dependency resolution
+- Boot lifecycle events

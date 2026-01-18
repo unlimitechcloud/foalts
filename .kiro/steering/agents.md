@@ -227,3 +227,46 @@ cd packages/core && npm run lint
   - ✅ @lazy decorator
   - ✅ register() method
   - ✅ Tracking de estado de inicialización
+  - ✅ Sistema de logging para debug
+
+## Sistema de Logging
+
+El ServiceManager incluye un sistema de logging configurable para debugging:
+
+### Configuración
+
+```typescript
+// Sin logging (por defecto)
+const sm = new ServiceManager();
+
+// Info-level logging
+const sm = new ServiceManager({ logging: true });
+
+// Debug detallado (incluye cadena de resolución)
+const sm = new ServiceManager({ debug: true });
+
+// Logger personalizado
+const sm = new ServiceManager({
+  logging: true,
+  debug: true,
+  logger: {
+    info: (msg) => console.log(msg),
+    debug: (msg) => console.log(msg),
+    warn: (msg) => console.warn(msg),
+  }
+});
+```
+
+### Niveles de Log
+
+| Opción | Default | Descripción |
+|--------|---------|-------------|
+| `logging` | `false` | Eventos de registro, creación, boot |
+| `debug` | `false` | Cadena de resolución, inyección, caché |
+
+### Tests de Logging
+
+```bash
+# Ejecutar tests de logging
+cd packages/core && npm test -- --grep "logging"
+```
