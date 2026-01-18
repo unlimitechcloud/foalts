@@ -44,7 +44,7 @@
   },
   "homepage": "https://github.com/FoalTS",
   "contributors": [
-    "Loïc Poullain"
+    "Lo\u00efc Poullain"
   ],
   "license": "MIT",
   "files": [
@@ -66,6 +66,7 @@
     "mocha": "~11.7.5",
     "rimraf": "~6.1.0",
     "ts-node": "~10.9.2",
-    "typescript": "~5.5.4"
+    "typescript": "~5.5.4",
+    "@unlimitechcloud/foalts.core": "file:../core"
   }
 }

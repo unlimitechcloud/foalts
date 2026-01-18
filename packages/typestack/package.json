@@ -37,7 +37,7 @@
   },
   "homepage": "https://github.com/FoalTS",
   "contributors": [
-    "Loïc Poullain"
+    "Lo\u00efc Poullain"
   ],
   "license": "MIT",
   "files": [
@@ -48,7 +48,8 @@
     "class-validator": "~0.14.1"
   },
   "dependencies": {
-    "@foal/core": "npm:@unlimitechcloud/foalts.core@5.1.1002"
+    "@foal/core": "npm:@unlimitechcloud/foalts.core@5.1.1002",
+    "@unlimitechcloud/foalts.core": "file:../core"
   },
   "devDependencies": {
     "@types/mocha": "10.0.10",

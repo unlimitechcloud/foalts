@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/FoalTS",
   "contributors": [
-    "Loïc Poullain"
+    "Lo\u00efc Poullain"
   ],
   "license": "MIT",
   "files": [
@@ -42,7 +42,8 @@
   ],
   "dependencies": {
     "@foal/core": "npm:@unlimitechcloud/foalts.core@5.1.1002",
-    "redis": "~4.7.0"
+    "redis": "~4.7.0",
+    "@unlimitechcloud/foalts.core": "file:../core"
   },
   "devDependencies": {
     "@types/mocha": "10.0.10",

@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@foal/core": "npm:@unlimitechcloud/foalts.core@5.1.1002",
+    "@unlimitechcloud/foalts.core": "file:../../../../packages/core",
     "@foal/foobar": "^0.8.0",
     "another-dependency": "^1.0.0"
   },

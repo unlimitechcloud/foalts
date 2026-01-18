@@ -9,10 +9,6 @@
     "strictPropertyInitialization": false,
     "sourceMap": true,
     "declaration": true,
-    "paths": {
-      "@foal/core": ["../core/lib"],
-      "@foal/core/*": ["../core/lib/*"]
-    },
     "typeRoots": [
       "./typings",
       "../../typings",

@@ -33,7 +33,7 @@
     "build/"
   ],
   "contributors": [
-    "Loïc Poullain"
+    "Lo\u00efc Poullain"
   ],
   "bugs": {
     "url": "https://github.com/FoalTS/foal/issues"
@@ -56,7 +56,8 @@
     "source-map-support": "~0.5.21",
     "sqlite3": "~5.1.7",
     "typeorm": "0.3.27",
-    "yamljs": "~0.3.0"
+    "yamljs": "~0.3.0",
+    "@unlimitechcloud/foalts.core": "file:../../packages/core"
   },
   "devDependencies": {
     "@foal/cli": "^5.1.1",
